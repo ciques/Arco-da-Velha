@@ -1,7 +1,14 @@
 import React from 'react'
 import Header from '../components/Header'
 import Content from '../components/Content'
-import { Wraper } from './styles'
+import styled from 'styled-components'
+
+const Wraper = styled.div`
+    background: White;
+    color: #990099;
+    width:
+`
+
 
 
 function Home() {
