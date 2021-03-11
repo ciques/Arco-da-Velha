@@ -1,20 +1,18 @@
 import React from 'react'
 import Header from '../components/Header'
 import Content from '../components/Content'
-import { Wraper } from './styles'
 
-
-function Home() {
+function Contato() {
     return (
-        <Wraper>
+        <div>
             <Header>
             
             </Header>
             <Content>
-                Home
+                Ligue para 0800 5565 65566
             </Content>
-        </Wraper>
+        </div>
     )
 }
 
-export default Home
+export default Contato
