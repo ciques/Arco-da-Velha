@@ -5,7 +5,7 @@ pg.defaults.ssl = true
 module.exports = {
     client: 'postgresql',
     connection: {
-      connectionString :`postgres://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}`,
+      connectionString: process.env.DB_URL,
       ssl: { rejectUnauthorized: false },
     },
     migrations :{
