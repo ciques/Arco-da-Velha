@@ -1,18 +1,15 @@
-// Update with your config settings.
+require('dotenv').config()
+const pg = require('pg')
+pg.defaults.ssl = true
 
 module.exports = {
-
-  development: {
-    client: 'mysql',
+    client: 'postgresql',
     connection: {
-      host : '127.0.0.1',
-      user : 'admin',
-      password : 'younnergust',
-      database : 'arco_local'
+      connectionString :`postgres://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}/${process.env.DB_NAME}`,
+      ssl: { rejectUnauthorized: false },
     },
     migrations :{
       tableName: 'knex_migration',
       directory: `${__dirname}/database/migrations` 
     }
-  },
-};
+  }
