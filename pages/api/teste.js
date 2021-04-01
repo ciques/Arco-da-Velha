@@ -8,7 +8,7 @@ export default function users(req, res) {
                 resolve();
             })
             .catch(err => {
-                res.json(error);
+                res.json(err);
                 res.status(405).end();
                 return resolve()
             })
