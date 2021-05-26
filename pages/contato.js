@@ -9,7 +9,7 @@ function Contato() {
             
             </Header>
             <Content>
-                Ligue para 0800 5565 65566
+                Ligue para 51993514124 nicklink apenas
             </Content>
         </div>
     )

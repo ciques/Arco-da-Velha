@@ -1,13 +1,16 @@
 // import { Wraper, Logo, Itens, HeaderItens } from './styles'
 
-import { Wraper } from "../Header/styles"
+import { Title, Wraper  } from "./styles"
 
 function Content(props){
-    return (
-        <Wraper>
-            {props.children}
-        </Wraper>
-    )
+  return (
+      <Wraper>
+        {props.title &&         
+          <Title>{props.title}</Title>     
+        }
+        {props.children}
+      </Wraper>
+  )
 }
 
 export default Content

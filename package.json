@@ -24,9 +24,11 @@
     "knex": "^0.95.4",
     "mysql": "^2.18.1",
     "next": "^10.0.8",
+    "next-auth": "^3.14.0",
     "pg": "^8.5.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-icons": "^4.2.0",
     "styled-components": "^5.2.1"
   },
   "devDependencies": {
@@ -34,5 +36,5 @@
   },
   "engines": {
     "node": "v10.15.2"
-  } 
+  }
 }
