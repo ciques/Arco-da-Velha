@@ -40,7 +40,7 @@ export default function Admin() {
     (
       <Wraper>    
       {!logged ? 
-       console.log('oi') :        
+       ('s') :        
        <>
        (salve)
        <button onClick={() => {localStorage.removeItem('userToken')}}>logout</button>
