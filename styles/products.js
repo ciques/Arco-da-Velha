@@ -22,10 +22,10 @@ export const Photo = styled.div`
   background-image: ${({ photo }) => `url(${photo})`};
 `;
 
-
-
-export const AccessNumber = styled.div`
-  position: sticky;
-  color: #1c2858;
-  left: 55%;
+export const ProductCard = styled.div`
+  margin: 10px 10px 0 0;  
+  border: solid 2px #990099;
+  border-radius: 10px;
+  color: #990099;
+  max-width: 45%;
 `;

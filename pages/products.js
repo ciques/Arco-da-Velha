@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Header from '../components/Header'
 import Content from '../components/Content'
-import { Photo, Name, AccessNumber } from '../styles/products'
+import { Photo, Name, ProductCard } from '../styles/products'
 import styled from 'styled-components'
 
 const Wraper = styled.div`
@@ -23,7 +23,8 @@ export default function Products() {
       try {
         let baseUrl = '';
         if (hostname === 'localhost') {
-            baseUrl = 'http://localhost:5000/';
+            // baseUrl = 'http://localhost:5000/';
+            baseUrl = 'https://arco-da-velha-api.herokuapp.com/';
         } else {
             baseUrl = 'https://arco-da-velha-api.herokuapp.com/';
         } 
@@ -42,7 +43,7 @@ export default function Products() {
 
         const result = await res.json();
         setProducts(result);
-        console.log(products);
+        console.log(result);
         // result.user => 'Ada Lovelace'
 
       } catch (error) {
@@ -66,23 +67,17 @@ export default function Products() {
           <Header/>
 
           <Content title='PRODUTOS'>
-          <div>
           {products &&
             products.map(product => (
-              <Content key={product.id}>
+              <ProductCard key={product.id}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <Photo photo='./images/logo.jpg' />
                   <Name>
                     <p>{product.name}</p>
                   </Name>
-                  <AccessNumber>
-                    <p style={{ opacity: '80%' }}>Acesso ao App</p>
-                  </AccessNumber>
                 </div>
-
-              </Content>
+              </ProductCard>
             ))}
-        </div>          
           </Content>
       </Wraper>
   )
