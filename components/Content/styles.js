@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
 export const Wraper = styled.div`
-  border: solid 2px;
-  border-color: 
   width: 100%;
 `;
 

@@ -58,8 +58,10 @@ export default function Home() {
       }
 
       console.log(result.token);
-      // result.user => 'Ada Lovelace'
+      const user = result.user;
+      
       localStorage.setItem('userToken', result.token);
+      localStorage.setItem('userName', user.name);
       document.location.href = "/panel/admin";
 
     } catch (error) {
