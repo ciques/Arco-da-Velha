@@ -21,13 +21,7 @@ export default function Products() {
       console.log('oi')
       const hostname = window && window.location && window.location.hostname;
       try {
-        let baseUrl = '';
-        if (hostname === 'localhost') {
-            // baseUrl = 'http://localhost:5000/';
-            baseUrl = 'https://arco-da-velha-api.herokuapp.com/';
-        } else {
-            baseUrl = 'https://arco-da-velha-api.herokuapp.com/';
-        } 
+        const baseUrl = process.env.NEXT_PUBLIC_API_URL
         const res = await fetch(
           baseUrl + 'listProducts',
           {
@@ -48,6 +42,7 @@ export default function Products() {
 
       } catch (error) {
         console.log('error')
+        console.log(error)
       }
       console.log('saiu')
     

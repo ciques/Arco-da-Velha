@@ -24,29 +24,7 @@ export default function Home() {
   }
 
   async function login() {
-    const hostname = window && window.location && window.location.hostname;
     try {
-      // let baseUrl = '';
-      // if (hostname === 'localhost') {
-      //     // baseUrl = 'http://localhost:5000/';
-      //     baseUrl = 'https://arco-da-velha-api.herokuapp.com/';
-      // } else {
-      //     baseUrl = 'https://arco-da-velha-api.herokuapp.com/';
-      // } 
-      // const res = await fetch(
-      //   baseUrl + 'login',
-      //   {
-      //     body: JSON.stringify({
-      //       email,
-      //       password
-      //     }),
-      //     headers: {
-      //       'Content-Type': 'application/json'
-      //     },
-      //     method: 'POST'
-      //   }
-      // )
-
       const response = await api.post("login", { email, password })
 
       const result = response.data;
