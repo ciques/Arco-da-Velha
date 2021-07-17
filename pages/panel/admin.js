@@ -34,16 +34,13 @@ export default function Admin() {
         };
 
         const response = await api.post("refresh", {}, config)
-        localStorage.setItem('debug', response);
         console.log(response);
-
-
 
         setLogged(true)
       } catch (error) {
         console.log(error)
         toast.error('ocorreu um erro ao processar o token de autenticação')
-        // document.location.href = "/panel/login";
+        document.location.href = "/panel/login";
         return
       }
   }

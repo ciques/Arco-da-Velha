@@ -22,14 +22,14 @@ function Header({setMenu}){
             </Main>
             <SubHeader>
                 <Itens>
-                    <HeaderItens href="/panel/admin">
+                    {/* <HeaderItens href="/panel/admin">
                         Inicio
-                    </HeaderItens>
+                    </HeaderItens> */}
                     <HeaderItens onClick = {() => setMenu('cadastrar')}>
                         Cadastrar Produtos
                     </HeaderItens>
                     <HeaderItens onClick = {() => setMenu('remover')}>
-                        Baixa/Remover Produtos
+                        Visualizar / Remover Produtos
                     </HeaderItens>
                 </Itens>
             </SubHeader>

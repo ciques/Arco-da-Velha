@@ -29,3 +29,16 @@ export const ProductCard = styled.div`
   color: #990099;
   max-width: 45%;
 `;
+
+export const ProductField = styled.div`
+  width: 25%;
+  display: flex;
+
+  & > p {
+    margin: 0 0 10px;
+  }
+`
+
+export const ProductHeader = styled.div`
+  display: flex;
+`
