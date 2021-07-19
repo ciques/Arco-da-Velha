@@ -3,7 +3,6 @@ import Header from '../components/Header'
 import Content from '../components/Content'
 import Loading from '../components/Loading';
 import Pagination from '../components/Pagination';
-import ReactPaginate from 'react-paginate';
 import { Photo, Name, ProductCard, ProductField, ProductHeader } from '../styles/products'
 import styled from 'styled-components'
 
@@ -22,10 +21,9 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const [size, setSize] = useState(1);
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(2);
+  const [pageSize, setPageSize] = useState(10);
 
   async function Form() {
-      console.log('oi')
       const hostname = window && window.location && window.location.hostname;
       try {
         const baseUrl = process.env.NEXT_PUBLIC_API_URL
@@ -53,14 +51,12 @@ export default function Products() {
         console.log('error')
         console.log(error)
       }
-      console.log('saiu')
       setLoading(false)
       setFetched(true)
     
   }
 
   function handleChangePage(data){
-    console.log('trocou');
     setLoading(true);
     setPage(data.selected + 1);
     setFetched(false);
@@ -138,7 +134,6 @@ export default function Products() {
               handleChangePage={handleChangePage}
             />
           }
-          {console.log(size)}
       </Wraper>
   )
 }

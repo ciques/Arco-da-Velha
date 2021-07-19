@@ -10,13 +10,19 @@ function logOut(){
   }
 
 function Header({setMenu}){
+    var userName
+
+    if (process.browser) {
+        userName = localStorage.getItem('userName');
+     }
+
+
     return (
         <Wraper>
             <Main>
                 <Logo src="../images/logo.jpg"/>
                 <Utility>
-                    Bem Vindo ao Painel de Administração {localStorage.getItem('userName')}
-                    
+                    Bem Vindo ao Painel de Administração {userName}                    
                 </Utility>
                 <button onClick={() => logOut()}>Sair</button>
             </Main>

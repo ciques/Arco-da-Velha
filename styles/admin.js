@@ -27,7 +27,7 @@ export const MenuButton = styled.div`
   font-size: 16px;
   padding: 10px 15px;
   border: none;
-  width: 50px;
+  width: fit-content;
   margin: 0 auto;
 `
 
@@ -43,4 +43,17 @@ export const Input = styled.div`
     margin: 0 0 10px;
     font-size: 20px;
   }
+`
+
+export const ProductField = styled.div`
+  width: 25%;
+  display: flex;
+
+  & > p {
+    margin: 0 0 10px;
+  }
+`
+
+export const ProductHeader = styled.div`
+  display: flex;
 `

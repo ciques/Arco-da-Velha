@@ -12,7 +12,7 @@ function Header(props){
                 <Logo src="./images/logo.jpg"/>
                 <SearchBox placeholder={'Pesquise por produtos aqui...'} handleSearch={(text) => fetchData(text)} />
                 <Utility>
-                    to be defined
+                    <a href='/panel/login'>Login</a>
                 </Utility>
             </Main>
             <SubHeader>

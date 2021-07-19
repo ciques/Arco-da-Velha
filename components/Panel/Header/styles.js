@@ -54,4 +54,5 @@ export const HeaderItens = styled.a`
   color: inherit;
   font-size: 1.5em;
   text-decoration: none;
+  cursor: pointer;
 `
