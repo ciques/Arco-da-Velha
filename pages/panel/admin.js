@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Wraper, MenuBox, MenuButton, Input, ProductField, ProductHeader } from '../../styles/admin';
+import { Wraper, MenuBox, MenuButton, Input, ProductField, ProductHeader, SelectType, OptionType } from '../../styles/admin';
 import Header from '../../components/Panel/Header';
 import Content from '../../components/Content';
 import Loading from '../../components/Loading';
@@ -10,6 +10,14 @@ import api from '../../services/api';
 
 
 export default function Admin() {
+  
+  // tamanho da paginação na visualização dos produtos 
+  const pageSize = 10;
+  const productType = [
+    'Disco',
+    'CD',
+    'Fita Cassete'
+  ];
 
   const [fetched, setFetched] = useState(false);
   const [logged, setLogged ] = useState(false);
@@ -18,13 +26,12 @@ export default function Admin() {
   const [productList, setProductList] = useState([]);
   const [size, setSize] = useState(1);
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
   const [product, setProduct] = useState(
     {
       name:'',
       artist:'',
       price: '',
-      type: ''
+      type: productType[0]
     });
 
   
@@ -55,10 +62,9 @@ export default function Admin() {
   }
 
 
-  async function Form() {
-    const hostname = window && window.location && window.location.hostname;
+  async function Form(thisPage = 1) {
     try {
-      const response = await api.post("listProducts", { pageSize, page })
+      const response = await api.post("listProducts", { pageSize, page: thisPage })
 
       const result = response.data;
 
@@ -69,6 +75,7 @@ export default function Admin() {
     } catch (error) {
       console.log('error')
       console.log(error)
+      setLoading(false)
     }
     setLoading(false)
 }
@@ -76,7 +83,7 @@ export default function Admin() {
 function handleChangePage(data){
   setLoading(true);
   setPage(data.selected + 1);
-  Form();
+  Form(data.selected + 1);
 }
 
 
@@ -90,7 +97,7 @@ function handleChangePage(data){
     }
   }, [fetched]);
 
-  useEffect(() => {    
+  useEffect(() => {        
     if(menu === 'remover') {
       Form()
     }
@@ -142,7 +149,7 @@ function handleChangePage(data){
         <MenuBox>
           <Input>
             <p>
-              Nome
+              Título
             </p>
             <input
               onChange={(e) => setProduct({...product, name: e.target.value})}
@@ -172,10 +179,16 @@ function handleChangePage(data){
             <p>
               Tipo
             </p>
-            <input
+            <SelectType onChange={(e) => setProduct({...product, type: e.target.value})}>
+              {productType.map(type => (
+                <OptionType key={type} value={type}>{type}</OptionType>                
+              ))}
+
+            </SelectType>
+            {/* <input
               onChange={(e) => setProduct({...product, type: e.target.value})}
               onKeyPress={(e) => checkEnter(e)}
-            />
+            /> */}
           </Input>
           <MenuButton onClick={() => addProduct()}>
             Cadastrar
@@ -187,7 +200,7 @@ function handleChangePage(data){
         <>
           <ProductHeader style={{margin: '30px 0 20px 0', fontSize: '30px'}}>
             <ProductField>
-             <p>Nome</p>
+             <p>Álbum</p>
             </ProductField>
             <ProductField>
              <p>Artista</p>

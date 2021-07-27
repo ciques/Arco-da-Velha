@@ -40,6 +40,7 @@ export const Logo = styled.img`
     width: 80px;
     height: 80px;
     border: solid 1px;
+    cursor: pointer;
 `
 
 export const Itens = styled.div`

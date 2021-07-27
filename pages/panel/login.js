@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Wraper, Title, LoginBox, LoginButton, Input } from '../../styles/login'
 import { ToastContainer, toast } from 'react-toastify';
+import Loading from '../../components/Loading';
 import 'react-toastify/dist/ReactToastify.min.css';
 import { useHistory } from 'react-router-dom';
 import api from '../../services/api'
@@ -11,16 +12,38 @@ export default function Home() {
   const [fetched, setFetched] = useState(false);
   const [password, setPassword ] = useState('');
   const [email, setEmail] = useState('');
+  const [loading, setLoading] = useState(true);
+
 
   
 
-  function checkLogin(){
+  async function checkLogin(){
     const token = localStorage.getItem('userToken');
 
     if (!token) {
       setFetched(true);
+      setLoading(false);
       return;
     }
+
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      };
+
+      const response = await api.post("refresh", {}, config)
+      console.log(response);
+      if(response.status == 200) {
+        document.location.href = "/panel/admin";
+      }
+
+    } catch (error) {
+      console.log(error)
+      toast.error('ocorreu um erro ao processar o token de autenticação')
+      return
+    }
+    setLoading(false)
+    setFetched(true)  
   }
 
   async function login() {
@@ -65,6 +88,10 @@ export default function Home() {
 
   return (
     <Wraper>
+      {loading && <Loading isLoading={loading} />}
+      <a href='/'>
+        voltar ao site
+      </a>  
       <Title>
         Bem vindo ao painel de administração
       </Title>
@@ -90,7 +117,7 @@ export default function Home() {
         <LoginButton onClick={() => login()}>
           Login
         </LoginButton>
-        <ToastContainer position="bottom-left" />
+        <ToastContainer position='bottom-center' />
       </LoginBox>
       
     </Wraper>

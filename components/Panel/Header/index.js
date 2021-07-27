@@ -20,7 +20,7 @@ function Header({setMenu}){
     return (
         <Wraper>
             <Main>
-                <Logo src="../images/logo.jpg"/>
+                <Logo onClick={()=> document.location.href = "/"} src="../images/logo.jpg"/>
                 <Utility>
                     Bem Vindo ao Painel de Administração {userName}                    
                 </Utility>

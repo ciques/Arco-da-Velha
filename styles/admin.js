@@ -42,6 +42,8 @@ export const Input = styled.div`
   & > input {
     margin: 0 0 10px;
     font-size: 20px;
+    border-radius: 5px;
+    border: solid 1px #990099;
   }
 `
 
@@ -56,4 +58,14 @@ export const ProductField = styled.div`
 
 export const ProductHeader = styled.div`
   display: flex;
+`
+
+export const SelectType = styled.select`
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: #990099;
+`
+
+export const OptionType = styled.option`
+
 `
