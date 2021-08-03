@@ -4,6 +4,7 @@ import Header from '../../components/Panel/Header';
 import Content from '../../components/Content';
 import Loading from '../../components/Loading';
 import Pagination from '../../components/Pagination';
+import AdminModal from '../../components/AdminModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import api from '../../services/api';
@@ -21,6 +22,7 @@ export default function Admin() {
 
   const [fetched, setFetched] = useState(false);
   const [logged, setLogged ] = useState(false);
+  const [openModal, setOpenModal ] = useState(false);
   const [loading, setLoading] = useState(true);
   const [menu, setMenu ] = useState('cadastrar');
   const [productList, setProductList] = useState([]);
@@ -28,11 +30,12 @@ export default function Admin() {
   const [page, setPage] = useState(1);
   const [product, setProduct] = useState(
     {
-      name:'',
+      title:'',
       artist:'',
       price: '',
       type: productType[0]
     });
+  const [activeProduct, setActiveProduct] = useState({});
 
   
 
@@ -97,6 +100,14 @@ function handleChangePage(data){
     }
   }, [fetched]);
 
+  // atualiza form ao fechar modal
+  useEffect(() => {   
+     
+    if (!openModal && menu === 'remover') {
+      Form(page)
+    }
+  }, [openModal]);
+
   useEffect(() => {        
     if(menu === 'remover') {
       Form()
@@ -133,11 +144,13 @@ function handleChangePage(data){
     setLoading(false);
   }
 
-  // async function removeProduct(){
-  //   if (!product.name && !product.artist && !product.price && !product.type) {
-  //     console.log('produto sem nome ,'+product.name)
-  //   }
-  // }
+  function prepareModal(productInfo) {
+    console.log('loop?')
+    setActiveProduct(productInfo);
+    setOpenModal(true);
+  }
+
+
   return (
   
     <Wraper>
@@ -152,7 +165,7 @@ function handleChangePage(data){
               Título
             </p>
             <input
-              onChange={(e) => setProduct({...product, name: e.target.value})}
+              onChange={(e) => setProduct({...product, title: e.target.value})}
               onKeyPress={(e) => checkEnter(e)}
             />
             {console.log(product)}
@@ -214,10 +227,10 @@ function handleChangePage(data){
           </ProductHeader>
           {productList &&
             productList.map(product => (
-              <ProductHeader key={product.id}>
+              <ProductHeader onClick={() => prepareModal(product)} key={product.id}>
                 <ProductField>
                   <p >
-                    {product.name}
+                    {product.title}
                   </p>
                 </ProductField>
                 <ProductField>
@@ -243,10 +256,17 @@ function handleChangePage(data){
                 handleChangePage={handleChangePage}
               />
             }
+            {openModal && <AdminModal
+              openModal={openModal}
+              setOpenModal={setOpenModal}
+              activeProduct={activeProduct}
+            />
+            }
         </>
         
         }
         </Content>
+
       </Wraper>
   )
 }

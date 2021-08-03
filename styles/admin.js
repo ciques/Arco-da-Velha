@@ -58,6 +58,7 @@ export const ProductField = styled.div`
 
 export const ProductHeader = styled.div`
   display: flex;
+  cursor: pointer;
 `
 
 export const SelectType = styled.select`

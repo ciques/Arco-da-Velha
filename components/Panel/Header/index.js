@@ -35,7 +35,7 @@ function Header({setMenu}){
                         Cadastrar Produtos
                     </HeaderItens>
                     <HeaderItens onClick = {() => setMenu('remover')}>
-                        Visualizar / Remover Produtos
+                        Editar / Remover Produtos
                     </HeaderItens>
                 </Itens>
             </SubHeader>

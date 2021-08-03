@@ -36,10 +36,18 @@ export default function Home() {
       if(response.status == 200) {
         document.location.href = "/panel/admin";
       }
+      console.log(response)
+
+      if(response.error == "Token inválido") {
+        setLoading(false)
+        setFetched(true)  
+      }
 
     } catch (error) {
       console.log(error)
-      toast.error('ocorreu um erro ao processar o token de autenticação')
+      toast.error('ocorreu um erro ao processar o token de autenticação, tente novamente')
+      setLoading(false)
+      setFetched(true)  
       return
     }
     setLoading(false)
@@ -63,6 +71,8 @@ export default function Home() {
       
       localStorage.setItem('userToken', result.token);
       localStorage.setItem('userName', user.name);
+
+      setLoading(true)
       document.location.href = "/panel/admin";
 
     } catch (error) {

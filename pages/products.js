@@ -93,7 +93,7 @@ export default function Products() {
               <ProductHeader key={product.id}>
                 <ProductField>
                   <p >
-                    {product.name}
+                    {product.title}
                   </p>
                 </ProductField>
                 <ProductField>
@@ -122,7 +122,7 @@ export default function Products() {
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                   <Photo photo='./images/logo.jpg' />
                   <Name>
-                    <p>{product.name}</p>
+                    <p>{product.title}</p>
                   </Name>
                 </div>
               </ProductCard>
