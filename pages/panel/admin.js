@@ -211,17 +211,17 @@ function handleChangePage(data){
         </> 
         : menu == 'remover' &&
         <>
-          <ProductHeader style={{margin: '30px 0 20px 0', fontSize: '30px'}}>
-            <ProductField>
+          <ProductHeader style={{margin: '30px 0 20px 0'}}>
+            <ProductField style={{fontWeight: 'bold'}}>
              <p>Álbum</p>
             </ProductField>
-            <ProductField>
+            <ProductField style={{fontWeight: 'bold'}}>
              <p>Artista</p>
             </ProductField>
-            <ProductField>
+            <ProductField style={{fontWeight: 'bold'}}>
              <p>Preço</p>
             </ProductField>
-            <ProductField>
+            <ProductField style={{fontWeight: 'bold'}}>
              <p>Tipo</p>
             </ProductField>
           </ProductHeader>

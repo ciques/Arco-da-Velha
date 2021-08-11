@@ -28,14 +28,21 @@ export const ProductCard = styled.div`
   border-radius: 10px;
   color: #990099;
   max-width: 45%;
+
 `;
 
 export const ProductField = styled.div`
   width: 25%;
   display: flex;
+  padding-left: 4%;
+  word-break: break-all;
 
   & > p {
     margin: 0 0 10px;
+  }
+
+  @media (max-width: 420px) {
+    font-size: 17px;
   }
 `
 

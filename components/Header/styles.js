@@ -11,6 +11,11 @@ export const Main = styled.div`
   padding-bottom: 20px;
   max-width: 1220px;
   justify-content: center;
+  font-size: 20px;
+
+  @media (max-width: 480px) {
+    font-size: 15px;
+  }
 `;
 
 export const Utility = styled.div`
@@ -53,4 +58,8 @@ export const HeaderItens = styled.a`
   color: inherit;
   font-size: 1.5em;
   text-decoration: none;
+
+  @media (max-width: 420px) {
+    font-size: 17px;
+  }
 `

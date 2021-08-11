@@ -50,6 +50,8 @@ export const Input = styled.div`
 export const ProductField = styled.div`
   width: 25%;
   display: flex;
+  padding-left: 4%;
+  word-break: break-all;
 
   & > p {
     margin: 0 0 10px;

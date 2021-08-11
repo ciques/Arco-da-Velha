@@ -74,17 +74,17 @@ export default function Products() {
         {loading && <Loading isLoading={loading} />}
           <Header/>
           <Content title='PRODUTOS'>
-          <ProductHeader style={{margin: '30px 0 20px 0', fontSize: '30px'}}>
-            <ProductField>
+          <ProductHeader style={{margin: '30px 0 20px 0'}}>
+            <ProductField style={{fontWeight: 'bold'}}>
              <p>Nome</p>
             </ProductField>
-            <ProductField>
+            <ProductField style={{fontWeight: 'bold'}}>
              <p>Artista</p>
             </ProductField>
-            <ProductField>
+            <ProductField style={{fontWeight: 'bold'}}>
              <p>Preço</p>
             </ProductField>
-            <ProductField>
+            <ProductField style={{fontWeight: 'bold'}}>
              <p>Tipo</p>
             </ProductField>
           </ProductHeader>

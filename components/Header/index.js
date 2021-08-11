@@ -10,7 +10,7 @@ function Header(props){
         <Wraper>
             <Main>
                 <Logo src="./images/logo.jpg"/>
-                <SearchBox placeholder={'Pesquise por produtos aqui...'} handleSearch={(text) => fetchData(text)} />
+                <SearchBox placeholder={'Procurar produto'} handleSearch={(text) => fetchData(text)} />
                 <Utility>
                     <a href='/panel/login'>Login</a>
                 </Utility>
