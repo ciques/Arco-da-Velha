@@ -9,7 +9,9 @@ function Contato() {
             
             </Header>
             <Content>
-                Ligue para 51993514124 nicklink apenas
+                <div style={{textAlign: 'center'}}>
+                    Telefone para contato (51)91980229
+                </div>
             </Content>
         </div>
     )

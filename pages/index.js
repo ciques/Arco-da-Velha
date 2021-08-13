@@ -23,7 +23,7 @@ export default function Home() {
           <Header>
           
           </Header>
-          <Content title='COM CERTEZA É MEU PASSION OK'>
+          <Content title='Imagem Dummy'>
             <img width='' src="./images/logo.jpg"/>
           </Content>
       </Wraper>
