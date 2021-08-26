@@ -20,7 +20,7 @@ export default function Home() {
 
   return (
       <Wraper>
-          <Header>
+          <Header logo="./images/logo.jpg">
           
           </Header>
           <Content title='Imagem Dummy'>

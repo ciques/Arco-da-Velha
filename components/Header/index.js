@@ -1,15 +1,15 @@
 import { Wraper, Logo, Itens, HeaderItens, Main, Utility, SubHeader } from './styles'
 import SearchBox from '../SearchBox';
 
-function fetchData() {
-    console.log('works')
+function fetchData(text) {
+    document.location.href = "/products/" + text;
 }
 
 function Header(props){
     return (
         <Wraper>
             <Main>
-                <Logo src="./images/logo.jpg"/>
+                <Logo src={props.logo}/>
                 <SearchBox placeholder={'Procurar produto'} handleSearch={(text) => fetchData(text)} />
                 <Utility>
                     <a href='/panel/login'>Login</a>

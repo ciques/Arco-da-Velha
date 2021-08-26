@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import Header from '../components/Header'
-import Content from '../components/Content'
-import Loading from '../components/Loading';
-import Pagination from '../components/Pagination';
-import { Photo, Name, ProductCard, ProductField, ProductHeader } from '../styles/products'
+import { useRouter } from 'next/router';
+import Header from '../../components/Header';
+import Content from '../../components/Content';
+import Loading from '../../components/Loading';
+import Pagination from '../../components/Pagination';
+import { Photo, Name, ProductCard, ProductField, ProductHeader } from '../../styles/products';
 import styled from 'styled-components'
 
 const Wraper = styled.div`
@@ -16,14 +17,30 @@ const Wraper = styled.div`
 
 export default function Products() {
 
+  const router = useRouter()
+
+
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [size, setSize] = useState(1);
+  const [filter, setFilter] = useState({});
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
+
+  // useEffect(() => {
+  //   if(!router.isReady)return;
+
+  //   setFilter(router.query.filter)
+    
+
+
+  // }, [router.isReady]);
+
+
   async function Form() {
+      const filter = router.query.filter ? router.query.filter[0] : null
       const hostname = window && window.location && window.location.hostname;
       try {
         const baseUrl = process.env.NEXT_PUBLIC_API_URL
@@ -32,7 +49,8 @@ export default function Products() {
           {
             body: JSON.stringify({
               pageSize,
-              page
+              page,
+              filter
             }),
             headers: {
               'Content-Type': 'application/json'
@@ -63,16 +81,17 @@ export default function Products() {
   }
 
   useEffect(() => {    
+    if(!router.isReady)return;
     if (!fetched) {
       Form();
     }
-  }, [fetched]);
+  }, [fetched, router.isReady]);
 
 
   return (
       <Wraper>
         {loading && <Loading isLoading={loading} />}
-          <Header/>
+          <Header logo="../images/logo.jpg" />
           <Content title='PRODUTOS'>
           <ProductHeader style={{margin: '30px 0 20px 0'}}>
             <ProductField style={{fontWeight: 'bold'}}>

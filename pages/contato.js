@@ -5,7 +5,7 @@ import Content from '../components/Content'
 function Contato() {
     return (
         <div>
-            <Header>
+            <Header logo="./images/logo.jpg">
             
             </Header>
             <Content>

@@ -90,6 +90,10 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
   }
 
 
+  function formatPrice(price) {
+    return price.replace(",", ".");
+  }
+
   return (
     <div>
       {console.log('producto es: ', activeProduct)}
@@ -128,7 +132,7 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
             </p>
             <input
               type='number'
-              onChange={(e) => setProduct({...product, price: e.target.value})}
+              onChange={(e) => setProduct({...product, price: formatPrice(e.target.value)})}
               value={product.price}
             />
           </Input>

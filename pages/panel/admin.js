@@ -150,6 +150,14 @@ function handleChangePage(data){
     setOpenModal(true);
   }
 
+  function formatPrice(price) {
+    return price.replace(".", ",");
+  }
+
+  function formatDB(price) {
+    return price.replace(",", ".");
+  }
+
 
   return (
   
@@ -184,7 +192,8 @@ function handleChangePage(data){
               Preço
             </p>
             <input
-              onChange={(e) => setProduct({...product, price: e.target.value})}
+              type="number"
+              onChange={(e) => setProduct({...product, price: formatDB(e.target.value)})}
               onKeyPress={(e) => checkEnter(e)}
             />
           </Input>
@@ -240,7 +249,7 @@ function handleChangePage(data){
                 </ProductField>
                 <ProductField>
                   <p>
-                    {product.price ?? 'Sem preço definido' }
+                    R$ {formatPrice(product.price.toFixed(2)) ?? 'Sem preço definido' }
                   </p>
                 </ProductField>
                 <ProductField>
