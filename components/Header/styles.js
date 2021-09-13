@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Main = styled.div`
-  color: #990099;
+  color: #808080;
   height: 80px;
   display: flex;
   width: 100%;
@@ -19,30 +19,32 @@ export const Main = styled.div`
 `;
 
 export const Utility = styled.div`
-  color: #990099;
+  color: #808080;
   display: flex;
 `;
 
 export const SubHeader = styled.div`
-  color: #FFF;
+  color: #808080;
   height: 100%;
   display: flex;
   width: 100%;
   margin: 20px 0;
   justify-content: center;
-  background-color: #990099;
+  border-bottom: solid 1px;
+  padding-bottom: 5px;
 `;
 
 export const Wraper = styled.div`
-  color: #990099;
+  color: #808080;
   height: 100%;
   width: 100%;
   margin: -8px;
 `;
 
 export const Logo = styled.img`
-    width: 80px;
     height: 80px;
+    max-width: 100%
+    max-height: 100%
     border: solid 1px;
 `
 

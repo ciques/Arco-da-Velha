@@ -5,12 +5,12 @@ export const Wraper = styled.div`
   justify-content: center;
   padding: 10px;
   max-width: 400px;
-  color: #990099;  
+  color: #808080;  
 `
 
 export const LoginBox = styled.div`
   margin: auto;
-  border: solid 2px #990099;
+  border: solid 2px #808080;
   border-radius: 10px;
   padding: 10px;
   max-width: 400px;
@@ -24,7 +24,7 @@ export const Title = styled.div`
 `
 
 export const LoginButton = styled.div`
-  background-color: #990099;
+  background-color: #808080;
   color: #FFF;
   border-radius: 5px;
   display: block;

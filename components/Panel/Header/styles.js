@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const Main = styled.div`
-  color: #990099;
+  color: #808080;
   height: 80px;
   display: flex;
   width: 100%;
@@ -14,7 +14,7 @@ export const Main = styled.div`
 `;
 
 export const Utility = styled.div`
-  color: #990099;
+  color: #808080;
   display: flex;
   margin: auto 20px;
 `;
@@ -26,11 +26,11 @@ export const SubHeader = styled.div`
   width: 100%;
   margin: 20px 0;
   justify-content: center;
-  background-color: #990099;
+  background-color: #808080;
 `;
 
 export const Wraper = styled.div`
-  color: #990099;
+  color: #808080;
   height: 100%;
   width: 100%;
   margin: -8px;

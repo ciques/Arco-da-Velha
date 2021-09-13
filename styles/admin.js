@@ -4,12 +4,12 @@ export const Wraper = styled.div`
   margin: 20px auto;
   justify-content: center;
   padding: 10px;
-  color: #990099;  
+  color: #808080;  
 `
 
 export const MenuBox = styled.div`
   margin: 70px auto;
-  border: solid 2px #990099;
+  border: solid 2px #808080;
   border-radius: 10px;
   padding: 10px;
   max-width: 400px;
@@ -17,7 +17,7 @@ export const MenuBox = styled.div`
 `
 
 export const MenuButton = styled.div`
-  background-color: #990099;
+  background-color: #808080;
   color: #FFF;
   border-radius: 5px;
   display: block;
@@ -43,14 +43,12 @@ export const Input = styled.div`
     margin: 0 0 10px;
     font-size: 20px;
     border-radius: 5px;
-    border: solid 1px #990099;
+    border: solid 1px #808080;
   }
 `
 
 export const ProductField = styled.div`
-  width: 25%;
   display: flex;
-  padding-left: 4%;
   word-break: break-all;
 
   & > p {
@@ -66,9 +64,26 @@ export const ProductHeader = styled.div`
 export const SelectType = styled.select`
   margin: 0 0 10px;
   font-size: 20px;
-  color: #990099;
+  color: #808080;
 `
 
 export const OptionType = styled.option`
 
+`
+
+export const ProductCard = styled.div`
+  padding: 10px;
+  border: solid 2px #808080;
+  border-radius: 10px;
+  color: #808080;
+  width: 20%;
+  margin-bottom: 20px;
+`;
+
+export const ProductList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  justify-content: space-between;
+  margin: 0 auto;
 `

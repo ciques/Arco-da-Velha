@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Wraper, MenuBox, MenuButton, Input, ProductField, ProductHeader, SelectType, OptionType } from '../../styles/admin';
+import { Wraper, MenuBox, MenuButton, Input, ProductCard, ProductField, ProductList, SelectType, OptionType } from '../../styles/admin';
 import Header from '../../components/Panel/Header';
 import Content from '../../components/Content';
 import Loading from '../../components/Loading';
@@ -220,57 +220,32 @@ function handleChangePage(data){
         </> 
         : menu == 'remover' &&
         <>
-          <ProductHeader style={{margin: '30px 0 20px 0'}}>
-            <ProductField style={{fontWeight: 'bold'}}>
-             <p>Álbum</p>
-            </ProductField>
-            <ProductField style={{fontWeight: 'bold'}}>
-             <p>Artista</p>
-            </ProductField>
-            <ProductField style={{fontWeight: 'bold'}}>
-             <p>Preço</p>
-            </ProductField>
-            <ProductField style={{fontWeight: 'bold'}}>
-             <p>Tipo</p>
-            </ProductField>
-          </ProductHeader>
-          {productList &&
-            productList.map(product => (
-              <ProductHeader onClick={() => prepareModal(product)} key={product.id}>
-                <ProductField>
-                  <p >
-                    {product.title}
-                  </p>
-                </ProductField>
-                <ProductField>
-                  <p>
-                    {product.artist}
-                  </p>
-                </ProductField>
-                <ProductField>
-                  <p>
-                    R$ {formatPrice(product.price.toFixed(2)) ?? 'Sem preço definido' }
-                  </p>
-                </ProductField>
-                <ProductField>
-                  <p>
-                    {product.type}
-                  </p>
-                </ProductField>
-              </ProductHeader>
-            ))}
-            {size > 1 &&
-              <Pagination
-                size={size}
-                handleChangePage={handleChangePage}
+          <ProductList>
+            {productList &&
+              productList.map(product => (
+                <ProductCard key={product.id} onClick={() => prepareModal(product)} key={product.id}>
+                    <img style={{maxWidth: '95%'}} src='../images/dummy.jpg' />
+                    <ProductField>
+                      {product.artist} - {product.title}
+                    </ProductField>
+                    <ProductField>
+                      R$ {formatPrice(product.price.toFixed(2)) ?? 'Sem preço definido' }
+                    </ProductField>                
+                </ProductCard>
+              ))}
+              {size > 1 &&
+                <Pagination
+                  size={size}
+                  handleChangePage={handleChangePage}
+                />
+              }
+              {openModal && <AdminModal
+                openModal={openModal}
+                setOpenModal={setOpenModal}
+                activeProduct={activeProduct}
               />
-            }
-            {openModal && <AdminModal
-              openModal={openModal}
-              setOpenModal={setOpenModal}
-              activeProduct={activeProduct}
-            />
-            }
+              }
+          </ProductList>
         </>
         
         }
