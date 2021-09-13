@@ -15,7 +15,7 @@
   padding: 6px 12px;
   line-height: 1.42857143;
   text-decoration: none;
-  color: #990099;
+  color: #808080;
   background-color: #fff;
   border: 1px solid #ddd;
   margin-left: -1px;
@@ -36,7 +36,7 @@
 .pagination > li > a:focus,
 .pagination > li > span:focus {
   z-index: 2;
-  color: #990099;
+  color: #808080;
   background-color: #eeeeee;
   border-color: #ddd;
 }

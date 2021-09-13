@@ -10,12 +10,11 @@ export const Name = styled.div`
 
 export const Photo = styled.div`
   display: inline-block;
-  margin: 37px 0px 37px 20px;
-  width: 40px;
-  height: 40px;
+  // margin: 37px 0px 37px 20px;
+  // width: 40px;
+  // height: 40px;
   position: relative;
   
-  border-radius: 50%;
   background-size: cover;
   background-repeat: no-repeat;
   box-shadow: 0px 2px 0.5rem rgba(50, 50, 50, 0.3);
@@ -23,16 +22,15 @@ export const Photo = styled.div`
 `;
 
 export const ProductCard = styled.div`
-  margin: 10px 10px 0 0;  
-  border: solid 2px #990099;
+  padding: 10px;
+  border: solid 2px #808080;
   border-radius: 10px;
-  color: #990099;
-  max-width: 45%;
-
+  color: #808080;
+  width: 20%;
+  margin-bottom: 20px;
 `;
 
 export const ProductField = styled.div`
-  width: 25%;
   display: flex;
   padding-left: 4%;
   word-break: break-all;
@@ -48,4 +46,16 @@ export const ProductField = styled.div`
 
 export const ProductHeader = styled.div`
   display: flex;
+`
+
+export const ProductList = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+  justify-content: space-between;
+  margin: 0 auto;
+`
+
+export const Filters = styled.div`
+  display: none;
 `

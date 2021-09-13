@@ -4,12 +4,12 @@ import Header from '../../components/Header';
 import Content from '../../components/Content';
 import Loading from '../../components/Loading';
 import Pagination from '../../components/Pagination';
-import { Photo, Name, ProductCard, ProductField, ProductHeader } from '../../styles/products';
+import { Photo, Name, ProductCard, ProductField, ProductList, Filters } from '../../styles/products';
 import styled from 'styled-components'
 
 const Wraper = styled.div`
     background: White;
-    color: #990099;
+    color: #808080;
 `
 
 
@@ -87,63 +87,39 @@ export default function Products() {
     }
   }, [fetched, router.isReady]);
 
+  function formatPrice(price) {
+    return price.replace(".", ",");
+  }
 
   return (
       <Wraper>
         {loading && <Loading isLoading={loading} />}
           <Header logo="../images/logo.jpg" />
-          <Content title='PRODUTOS'>
-          <ProductHeader style={{margin: '30px 0 20px 0'}}>
-            <ProductField style={{fontWeight: 'bold'}}>
-             <p>Nome</p>
-            </ProductField>
-            <ProductField style={{fontWeight: 'bold'}}>
-             <p>Artista</p>
-            </ProductField>
-            <ProductField style={{fontWeight: 'bold'}}>
-             <p>Preço</p>
-            </ProductField>
-            <ProductField style={{fontWeight: 'bold'}}>
-             <p>Tipo</p>
-            </ProductField>
-          </ProductHeader>
-          {products &&
-            products.map(product => (
-              <ProductHeader key={product.id}>
-                <ProductField>
-                  <p >
-                    {product.title}
-                  </p>
-                </ProductField>
-                <ProductField>
-                  <p>
-                    {product.artist}
-                  </p>
-                </ProductField>
-                <ProductField>
-                  <p>
-                    {product.price ?? 'Sem preço definido' }
-                  </p>
-                </ProductField>
-                <ProductField>
-                  <p>
-                    {product.type}
-                  </p>
-                </ProductField>
-              </ProductHeader>
-            ))}
+          <Content>
+            <Filters>            
+            </Filters>
+
+            <ProductList>
+              {products &&
+                products.map(product => (
+                  <ProductCard key={product.id}>
+                      <img style={{maxWidth: '95%'}} src='./images/dummy.jpg' />
+                      <ProductField>
+                        {product.artist} - {product.title}
+                      </ProductField>
+                      <ProductField>
+                        R$ {formatPrice(product.price.toFixed(2)) ?? 'Sem preço definido' }
+                      </ProductField>                
+                  </ProductCard>
+                ))}
+              </ProductList>
           </Content>
           {/* depois que possuir imagem
           <Content title='PRODUTOS'>
           {products &&
             products.map(product => (
               <ProductCard key={product.id}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <Photo photo='./images/logo.jpg' />
-                  <Name>
-                    <p>{product.title}</p>
-                  </Name>
-                </div>
+
               </ProductCard>
             ))}
           </Content> */}

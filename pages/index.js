@@ -8,7 +8,7 @@ import styled from 'styled-components'
 
 const Wraper = styled.div`
     background: White;
-    color: #990099;
+    color: #808080;
 `
 
 
