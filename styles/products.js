@@ -10,9 +10,6 @@ export const Name = styled.div`
 
 export const Photo = styled.div`
   display: inline-block;
-  // margin: 37px 0px 37px 20px;
-  // width: 40px;
-  // height: 40px;
   position: relative;
   
   background-size: cover;
@@ -28,6 +25,7 @@ export const ProductCard = styled.div`
   color: #808080;
   width: 20%;
   margin-bottom: 20px;
+  margin-right: 20px;
 `;
 
 export const ProductField = styled.div`
@@ -52,10 +50,10 @@ export const ProductList = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 80%;
-  justify-content: space-between;
   margin: 0 auto;
 `
 
 export const Filters = styled.div`
-  display: none;
+  text-align: center;
+  margin-bottom: 20px;
 `

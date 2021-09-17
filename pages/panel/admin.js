@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Wraper, MenuBox, MenuButton, Input, ProductCard, ProductField, ProductList, SelectType, OptionType } from '../../styles/admin';
+
 import Header from '../../components/Panel/Header';
 import Content from '../../components/Content';
 import Loading from '../../components/Loading';
@@ -13,7 +14,7 @@ import api from '../../services/api';
 export default function Admin() {
   
   // tamanho da paginação na visualização dos produtos 
-  const pageSize = 10;
+  const pageSize = 12;
   const productType = [
     'Disco',
     'CD',
@@ -168,53 +169,90 @@ function handleChangePage(data){
         { menu === 'cadastrar' ?
         <>
         <MenuBox>
-          <Input>
-            <p>
-              Título
-            </p>
-            <input
-              onChange={(e) => setProduct({...product, title: e.target.value})}
-              onKeyPress={(e) => checkEnter(e)}
-            />
-            {console.log(product)}
-          </Input>
-          <Input>
-            <p>
-              Artista
-            </p>
-            <input
-              onChange={(e) => setProduct({...product, artist: e.target.value})}
-              onKeyPress={(e) => checkEnter(e)}
-            />
-          </Input>
-          <Input>
-            <p>
-              Preço
-            </p>
-            <input
-              type="number"
-              onChange={(e) => setProduct({...product, price: formatDB(e.target.value)})}
-              onKeyPress={(e) => checkEnter(e)}
-            />
-          </Input>
-          <Input>
-            <p>
-              Tipo
-            </p>
-            <SelectType onChange={(e) => setProduct({...product, type: e.target.value})}>
-              {productType.map(type => (
-                <OptionType key={type} value={type}>{type}</OptionType>                
-              ))}
+          <div style={{display: 'flex', justifyContent: 'space-around'}}>
+            <div>
+              <Input>
+                <p>
+                  Título
+                </p>
+                <input
+                  onChange={(e) => setProduct({...product, title: e.target.value})}
+                  onKeyPress={(e) => checkEnter(e)}
+                />
+                {console.log(product)}
+              </Input>
+              <Input>
+                <p>
+                  Artista
+                </p>
+                <input
+                  onChange={(e) => setProduct({...product, artist: e.target.value})}
+                  onKeyPress={(e) => checkEnter(e)}
+                />
+              </Input>
+              <Input>
+                <p>
+                  Preço
+                </p>
+                <input
+                  type="number"
+                  onChange={(e) => setProduct({...product, price: formatDB(e.target.value)})}
+                  onKeyPress={(e) => checkEnter(e)}
+                />
+              </Input>
+            </div>
+            <div>
+              <Input>
+                <p>
+                  Título
+                </p>
+                <input
+                  onChange={(e) => setProduct({...product, title: e.target.value})}
+                  onKeyPress={(e) => checkEnter(e)}
+                />
+                {console.log(product)}
+              </Input>
+              <Input>
+                <p>
+                  Artista
+                </p>
+                <input
+                  onChange={(e) => setProduct({...product, artist: e.target.value})}
+                  onKeyPress={(e) => checkEnter(e)}
+                />
+              </Input>
+              <Input>
+                <p>
+                  Preço
+                </p>
+                <input
+                  type="number"
+                  onChange={(e) => setProduct({...product, price: formatDB(e.target.value)})}
+                  onKeyPress={(e) => checkEnter(e)}
+                />
+              </Input>
+            </div>  
+          </div>        
+          <div>          
+            <Input>
+              <p>
+                Tipo
+              </p>
+              <SelectType onChange={(e) => setProduct({...product, type: e.target.value})}>
+                {productType.map(type => (
+                  <OptionType key={type} value={type}>{type}</OptionType>                
+                ))}
 
-            </SelectType>
-            {/* <input
-              onChange={(e) => setProduct({...product, type: e.target.value})}
-              onKeyPress={(e) => checkEnter(e)}
-            /> */}
-          </Input>
-          <MenuButton onClick={() => addProduct()}>
-            Cadastrar
-          </MenuButton>
+              </SelectType>
+              {/* <input
+                onChange={(e) => setProduct({...product, type: e.target.value})}
+                onKeyPress={(e) => checkEnter(e)}
+              /> */}
+            </Input>
+            <MenuButton onClick={() => addProduct()}>
+              Cadastrar
+            </MenuButton>
+          </div>
           <ToastContainer position="bottom-left" />
         </MenuBox>
         </> 

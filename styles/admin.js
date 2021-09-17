@@ -12,7 +12,7 @@ export const MenuBox = styled.div`
   border: solid 2px #808080;
   border-radius: 10px;
   padding: 10px;
-  max-width: 400px;
+  max-width: 600px;
   text-align: center; 
 `
 

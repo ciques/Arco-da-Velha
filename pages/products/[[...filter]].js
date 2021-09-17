@@ -5,6 +5,7 @@ import Content from '../../components/Content';
 import Loading from '../../components/Loading';
 import Pagination from '../../components/Pagination';
 import { Photo, Name, ProductCard, ProductField, ProductList, Filters } from '../../styles/products';
+import { SelectType, OptionType } from '../../styles/admin';
 import styled from 'styled-components'
 
 const Wraper = styled.div`
@@ -19,6 +20,12 @@ export default function Products() {
 
   const router = useRouter()
 
+  const OrderBy = [
+    ['Nome', 'name'],
+    ['Artista', 'artist'],
+    ['Preço (maior pro menor)', 'pricedesc'],
+    ['Preço (menor pro maior)', 'pricecres']
+  ];
 
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -26,7 +33,8 @@ export default function Products() {
   const [size, setSize] = useState(1);
   const [filter, setFilter] = useState({});
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(10);
+  const [pageSize, setPageSize] = useState(12);
+  const [order, setOrder] = useState('name');
 
 
   // useEffect(() => {
@@ -50,7 +58,8 @@ export default function Products() {
             body: JSON.stringify({
               pageSize,
               page,
-              filter
+              filter,
+              order
             }),
             headers: {
               'Content-Type': 'application/json'
@@ -96,7 +105,15 @@ export default function Products() {
         {loading && <Loading isLoading={loading} />}
           <Header logo="../images/logo.jpg" />
           <Content>
-            <Filters>            
+            <Filters>
+              <p>
+                Ordenar produtos por
+              </p>
+              <SelectType  onChange={(e) => setOrder(e.target.value)}>
+                {OrderBy.map(type => (
+                  <OptionType key={type[0]} value={type[1]}>{type[0]}</OptionType>                
+                ))}
+              </SelectType>          
             </Filters>
 
             <ProductList>
@@ -105,7 +122,7 @@ export default function Products() {
                   <ProductCard key={product.id}>
                       <img style={{maxWidth: '95%'}} src='./images/dummy.jpg' />
                       <ProductField>
-                        {product.artist} - {product.title}
+                        {product.title} - {product.artist}
                       </ProductField>
                       <ProductField>
                         R$ {formatPrice(product.price.toFixed(2)) ?? 'Sem preço definido' }
