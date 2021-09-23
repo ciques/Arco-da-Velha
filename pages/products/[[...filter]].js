@@ -48,39 +48,41 @@ export default function Products() {
 
 
   async function Form() {
-      const filter = router.query.filter ? router.query.filter[0] : null
-      const hostname = window && window.location && window.location.hostname;
-      try {
-        const baseUrl = process.env.NEXT_PUBLIC_API_URL
-        const res = await fetch(
-          baseUrl + 'listProducts',
-          {
-            body: JSON.stringify({
-              pageSize,
-              page,
-              filter,
-              order
-            }),
-            headers: {
-              'Content-Type': 'application/json'
-            },
-            method: 'POST'
-          }
-        )
+    setLoading(true)
+    const filter = router.query.filter ? router.query.filter[0] : null
+    const hostname = window && window.location && window.location.hostname;
+    try {
+      const baseUrl = process.env.NEXT_PUBLIC_API_URL
+      const res = await fetch(
+        baseUrl + 'listProducts',
+        {
+          body: JSON.stringify({
+            pageSize,
+            page,
+            filter,
+            order
+          }),
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          method: 'POST'
+        }
+      )
 
-        const result = await res.json();
-        setProducts(result.data);
-        setSize(result.pagination.lastPage ?? size);
-        console.log(result);
-        // result.user => 'Ada Lovelace'
+      const result = await res.json();
+      console.log(result);
 
-      } catch (error) {
-        console.log('error')
-        console.log(error)
-      }
-      setLoading(false)
-      setFetched(true)
-    
+      setProducts(result.data);
+      setSize(result.pagination.lastPage ?? size);
+      // result.user => 'Ada Lovelace'
+
+    } catch (error) {
+      console.log('error')
+      console.log(error)
+    }
+    setLoading(false)
+    setFetched(true)
+  
   }
 
   function handleChangePage(data){
@@ -95,6 +97,12 @@ export default function Products() {
       Form();
     }
   }, [fetched, router.isReady]);
+
+  useEffect(() => {    
+    if (fetched) {
+      Form();
+    }   
+  }, [order]);
 
   function formatPrice(price) {
     return price.replace(".", ",");
@@ -115,7 +123,6 @@ export default function Products() {
                 ))}
               </SelectType>          
             </Filters>
-
             <ProductList>
               {products &&
                 products.map(product => (

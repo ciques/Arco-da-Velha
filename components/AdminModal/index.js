@@ -21,16 +21,8 @@ Modal.setAppElement('body');
 
 export default function AdminModal({openModal, setOpenModal, activeProduct}) {
 
-  const productType = [
-    'Disco',
-    'CD',
-    'Fita Cassete'
-  ];
-
   const [product, setProduct] = useState(activeProduct);
-  const [loading, setLoading] = useState(false);
-
-  
+  const [loading, setLoading] = useState(false);  
 
   function afterOpenModal() {
 
@@ -108,47 +100,80 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
         {loading && <Loading isLoading={loading} />}  
         <button onClick={closeModal}>close</button>
         <MenuBox>
-          <Input>
-            <p>
-              Título
-            </p>
-            <input
-              onChange={(e) => setProduct({...product, title: e.target.value})}
-              value={product.title}
-            />
-          </Input>
-          <Input>
-            <p>
-              Artista
-            </p>
-            <input
-              onChange={(e) => setProduct({...product, artist: e.target.value})}
-              value={product.artist}
-            />
-          </Input>
-          <Input>
-            <p>
-              Preço
-            </p>
-            <input
-              type='number'
-              onChange={(e) => setProduct({...product, price: formatPrice(e.target.value)})}
-              value={product.price}
-            />
-          </Input>
-          <Input>
-            <p>
-              Tipo
-            </p>
-            <SelectType 
-              value={product.type}
-              onChange={(e) => setProduct({...product, type: e.target.value})}>
-              {productType.map(type => (
-                <OptionType key={type} value={type}>{type}</OptionType>                
-              ))}
-            </SelectType>
-
-          </Input>
+          <div style={{display: 'flex', justifyContent: 'space-around'}}>
+            <div>
+              <Input>
+                <p>
+                  Título
+                </p>
+                <input
+                  onChange={(e) => setProduct({...product, title: e.target.value})}
+                  value={product.title}
+                />
+              </Input>
+              <Input>
+                <p>
+                  Artista
+                </p>
+                <input
+                  onChange={(e) => setProduct({...product, artist: e.target.value})}
+                  value={product.artist}
+                />
+              </Input>
+              <Input>
+                <p>
+                  Preço
+                </p>
+                <input
+                  type='number'
+                  onChange={(e) => setProduct({...product, price: formatPrice(e.target.value)})}
+                  value={product.price}
+                />
+              </Input>
+              </div>
+              <div>
+                <Input>
+                  <p>
+                    Gênero Musical
+                  </p>
+                  <input
+                    onChange={(e) => setProduct({...product, genre: e.target.value})}
+                    value={product.genre}
+                  />
+                  {console.log(product)}
+                </Input>
+                <Input>
+                  <p>
+                    Tipo
+                  </p>
+                  <input 
+                    onChange={(e) => setProduct({...product, type: e.target.value})}
+                    value={product.type}
+                  />
+                </Input>              
+                <Input>
+                  <p>
+                    Estado
+                  </p>
+                  <input
+                    onChange={(e) => setProduct({...product, state: e.target.value})}
+                    value={product.state}
+                  />
+                </Input>
+              </div>          
+            </div>
+            <div>
+            <Input>
+                <p>
+                  Data de Lançamento
+                </p>
+                <input
+                  type='date'
+                  onChange={(e) => setProduct({...product, release_date: e.target.value})}
+                  value={product.release_date}              
+                />
+              </Input>
+            </div>
           <div style={{display: 'flex', marginTop: '20px'}}>
             <MenuButton onClick={() => updateProduct()}>
               Editar

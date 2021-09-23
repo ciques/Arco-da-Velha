@@ -15,11 +15,6 @@ export default function Admin() {
   
   // tamanho da paginação na visualização dos produtos 
   const pageSize = 12;
-  const productType = [
-    'Disco',
-    'CD',
-    'Fita Cassete'
-  ];
 
   const [fetched, setFetched] = useState(false);
   const [logged, setLogged ] = useState(false);
@@ -34,7 +29,10 @@ export default function Admin() {
       title:'',
       artist:'',
       price: '',
-      type: productType[0]
+      genre: '',
+      release_date: '',
+      state: '',
+      type: ''
     });
   const [activeProduct, setActiveProduct] = useState({});
 
@@ -147,6 +145,7 @@ function handleChangePage(data){
 
   function prepareModal(productInfo) {
     console.log('loop?')
+    console.log(productInfo)
     setActiveProduct(productInfo);
     setOpenModal(true);
   }
@@ -204,51 +203,45 @@ function handleChangePage(data){
             <div>
               <Input>
                 <p>
-                  Título
+                  Gênero Musical
                 </p>
                 <input
-                  onChange={(e) => setProduct({...product, title: e.target.value})}
+                  onChange={(e) => setProduct({...product, genre: e.target.value})}
                   onKeyPress={(e) => checkEnter(e)}
                 />
                 {console.log(product)}
               </Input>
               <Input>
                 <p>
-                  Artista
+                  Tipo
                 </p>
-                <input
-                  onChange={(e) => setProduct({...product, artist: e.target.value})}
+                <input 
+                  onChange={(e) => setProduct({...product, type: e.target.value})}
                   onKeyPress={(e) => checkEnter(e)}
                 />
-              </Input>
+              </Input>              
               <Input>
                 <p>
-                  Preço
+                  Estado
                 </p>
                 <input
-                  type="number"
-                  onChange={(e) => setProduct({...product, price: formatDB(e.target.value)})}
+                  onChange={(e) => setProduct({...product, state: e.target.value})}
                   onKeyPress={(e) => checkEnter(e)}
                 />
               </Input>
             </div>  
           </div>        
-          <div>          
+          <div>
             <Input>
-              <p>
-                Tipo
-              </p>
-              <SelectType onChange={(e) => setProduct({...product, type: e.target.value})}>
-                {productType.map(type => (
-                  <OptionType key={type} value={type}>{type}</OptionType>                
-                ))}
-
-              </SelectType>
-              {/* <input
-                onChange={(e) => setProduct({...product, type: e.target.value})}
-                onKeyPress={(e) => checkEnter(e)}
-              /> */}
-            </Input>
+                <p>
+                  Data de Lançamento
+                </p>
+                <input
+                  type='date'
+                  onChange={(e) => setProduct({...product, release_date: e.target.value})}
+                  onKeyPress={(e) => checkEnter(e)}
+                />
+              </Input>
             <MenuButton onClick={() => addProduct()}>
               Cadastrar
             </MenuButton>
@@ -269,7 +262,7 @@ function handleChangePage(data){
                     <ProductField>
                       R$ {formatPrice(product.price.toFixed(2)) ?? 'Sem preço definido' }
                     </ProductField>                
-                </ProductCard>
+                </ProductCard>                
               ))}
               {size > 1 &&
                 <Pagination

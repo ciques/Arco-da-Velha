@@ -40,7 +40,7 @@ export const Input = styled.div`
   }
 
   & > input {
-    margin: 0 0 10px;
+    margin: 0 10px 10px;
     font-size: 20px;
     border-radius: 5px;
     border: solid 1px #808080;
