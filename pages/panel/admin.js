@@ -35,8 +35,9 @@ export default function Admin() {
       type: ''
     });
   const [activeProduct, setActiveProduct] = useState({});
-
-  
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [imgUrl, setImgUrl] = useState('');
+ 
 
     async function checkLogin(){
       const token = localStorage.getItem('userToken');
@@ -113,6 +114,12 @@ function handleChangePage(data){
     }
   }, [menu]);
 
+  useEffect(() => {
+    if(fetched) setImgUrl(URL.createObjectURL(selectedImage))
+  }, [selectedImage]);
+
+  
+
   function checkEnter(e) {
     var code = e.keyCode || e.which;
     if(code === 13) { 
@@ -132,12 +139,26 @@ function handleChangePage(data){
 
       const result = response.data;
       console.log(result);
+
+      // Salva foto após salvar produto
+      const image = new FormData()
+      image.append('imageFile', selectedImage)
+  
+      const config2 = {
+          'Content-Type': 'multipart/form-data',
+      }
+  
+      await api.post('informations/createInformation', image, config2)
+          .then((response) => {
+              console.log(response.data)
+          })
+
+
       toast.success('Produto Cadastrado com sucesso')
       setMenu('remover');
     } catch (error) {
       console.log(error)
       toast.error('ocorreu um erro ao adicionar produto')
-      return
     }
 
     setLoading(false);
@@ -242,6 +263,16 @@ function handleChangePage(data){
                   onKeyPress={(e) => checkEnter(e)}
                 />
               </Input>
+              {imgUrl && <img alt="not found" width={"250px"} src={imgUrl} />}
+              <input
+                type="file"
+                name="myImage"
+                onChange={(event) => {
+                  console.log(event.target.files[0]);
+                  setSelectedImage(event.target.files[0]);
+                }}
+                style={{display: 'block',  margin: '10px auto'}}
+              />
             <MenuButton onClick={() => addProduct()}>
               Cadastrar
             </MenuButton>

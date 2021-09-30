@@ -8,6 +8,11 @@ export const Name = styled.div`
   align-items: center 
 `;
 
+export const Content = styled.div`
+  display: flex;
+`
+
+
 export const Photo = styled.div`
   display: inline-block;
   position: relative;
@@ -26,6 +31,7 @@ export const ProductCard = styled.div`
   width: 20%;
   margin-bottom: 20px;
   margin-right: 20px;
+  cursor: pointer;
 `;
 
 export const ProductField = styled.div`
@@ -55,5 +61,32 @@ export const ProductList = styled.div`
 
 export const Filters = styled.div`
   text-align: center;
-  margin-bottom: 20px;
+  display: flex;
+  width: 80%;
+  justify-content: space-between;
+  margin: 20px auto 40px;
+
+  & > p {
+    margin-top: 20px;
+  }
+`
+
+export const MenuCategory = styled.div`
+  width: 25%;
+  font-size: 35px;  
+`
+
+export const ContentProducts = styled.div`
+  width: 75%;
+`
+
+export const CategoryTitle = styled.div`
+  font-size: 25px;
+`
+
+export const Categoryinput = styled.a`
+  font-size: 15px;
+  margin-left: 20px;
+  text-decoration: none;
+
 `

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
+import api from '../../services/api';
+
 import Header from '../../components/Header';
-import Content from '../../components/Content';
 import Loading from '../../components/Loading';
 import Pagination from '../../components/Pagination';
-import { Photo, Name, ProductCard, ProductField, ProductList, Filters } from '../../styles/products';
+import { Content, MenuCategory, ContentProducts, ProductCard, ProductField, ProductList, Filters, CategoryTitle, Categoryinput } from '../../styles/products';
 import { SelectType, OptionType } from '../../styles/admin';
 import styled from 'styled-components'
 
@@ -31,11 +32,13 @@ export default function Products() {
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState([]);
   const [size, setSize] = useState(1);
-  const [filter, setFilter] = useState({});
+  const [filter, setFilter] = useState('');
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(12);
   const [order, setOrder] = useState('name');
-
+  const [types, setTypes] = useState([]);
+  const [artists, setArtists] = useState([]);
+  const [genres, setGenres] = useState([]);
 
   // useEffect(() => {
   //   if(!router.isReady)return;
@@ -49,8 +52,9 @@ export default function Products() {
 
   async function Form() {
     setLoading(true)
-    const filter = router.query.filter ? router.query.filter[0] : null
-    const hostname = window && window.location && window.location.hostname;
+    setFilter(router.query.filter ? router.query.filter[0] : null)
+
+    const filterPost = router.query.filter ? router.query.filter[0] : null
     try {
       const baseUrl = process.env.NEXT_PUBLIC_API_URL
       const res = await fetch(
@@ -59,7 +63,7 @@ export default function Products() {
           body: JSON.stringify({
             pageSize,
             page,
-            filter,
+            filterPost,
             order
           }),
           headers: {
@@ -74,6 +78,11 @@ export default function Products() {
 
       setProducts(result.data);
       setSize(result.pagination.lastPage ?? size);
+
+      const response = await api.get("listCategories")
+      setArtists(response.data.artists)
+      setGenres(response.data.genres)
+      setTypes(response.data.types)
       // result.user => 'Ada Lovelace'
 
     } catch (error) {
@@ -113,46 +122,96 @@ export default function Products() {
         {loading && <Loading isLoading={loading} />}
           <Header logo="../images/logo.jpg" />
           <Content>
-            <Filters>
-              <p>
-                Ordenar produtos por
-              </p>
-              <SelectType  onChange={(e) => setOrder(e.target.value)}>
-                {OrderBy.map(type => (
-                  <OptionType key={type[0]} value={type[1]}>{type[0]}</OptionType>                
-                ))}
-              </SelectType>          
-            </Filters>
-            <ProductList>
-              {products &&
-                products.map(product => (
-                  <ProductCard key={product.id}>
-                      <img style={{maxWidth: '95%'}} src='./images/dummy.jpg' />
-                      <ProductField>
-                        {product.title} - {product.artist}
-                      </ProductField>
-                      <ProductField>
-                        R$ {formatPrice(product.price.toFixed(2)) ?? 'Sem preço definido' }
-                      </ProductField>                
-                  </ProductCard>
-                ))}
-              </ProductList>
+            <MenuCategory>
+              Categorias:
+             
+              {genres && 
+                <CategoryTitle>
+                  Generos Musicais
+                </CategoryTitle>
+              }
+              {genres &&
+                <div style={{display: 'grid'}}>
+                  {genres.map(e => (
+                    <Categoryinput>
+                      {e}
+                    </Categoryinput>
+                  ))}
+                </div>
+              }
+              {types &&
+                <CategoryTitle>
+                  Produtos
+                </CategoryTitle>
+              }
+              {types &&
+                <div style={{display: 'grid'}}>
+                  {types.map(e => (
+                    <Categoryinput href={'products/'+e}>
+                      {e}
+                    </Categoryinput>
+                  ))}
+                </div>
+              }
+              {artists &&
+                <CategoryTitle>
+                  Artistas
+                </CategoryTitle>
+              }
+              {artists &&
+                <div style={{display: 'grid'}}>
+                  {artists.map(e => (
+                    <Categoryinput>
+                      {e}
+                    </Categoryinput>
+                  ))}
+                </div>
+              }                
+              
+            </MenuCategory>
+            <ContentProducts>
+              <Filters>
+                {filter && 
+                  <div style={{marginTop: '20px'}}>
+                    EXIBINDO RESULTADOS PARA: {filter.toUpperCase()}
+                  </div>
+                }
+                {console.log(filter)}
+                <div style={{marginRight: '40px'}}>
+                  <p>
+                    Ordenar produtos por
+                  </p>
+                  <SelectType  onChange={(e) => setOrder(e.target.value)}>
+                    {OrderBy.map(type => (
+                      <OptionType key={type[0]} value={type[1]}>{type[0]}</OptionType>                
+                    ))}
+                  </SelectType>  
+                  </div>        
+              </Filters>
+              <ProductList>
+                {products &&
+                  products.map(product => (
+                    <ProductCard key={product.id} onClick={() => {document.location.href = "/product/"+product.id}}>
+                        <img style={{maxWidth: '95%'}} src='../images/dummy.jpg' />
+                        <ProductField>
+                          {product.title} - {product.artist}
+                        </ProductField>
+                        <ProductField>
+                        {product.price ? 'R$' + formatPrice(product.price.toFixed(2)) : 'Sem preço definido' }
+                        </ProductField>                
+                    </ProductCard>
+                  ))}
+                </ProductList>
+            {size > 1 &&
+              <Pagination
+                size={size}
+                handleChangePage={handleChangePage}
+              />
+            }
+            </ContentProducts>
           </Content>
-          {/* depois que possuir imagem
-          <Content title='PRODUTOS'>
-          {products &&
-            products.map(product => (
-              <ProductCard key={product.id}>
 
-              </ProductCard>
-            ))}
-          </Content> */}
-          {size > 1 &&
-            <Pagination
-              size={size}
-              handleChangePage={handleChangePage}
-            />
-          }
+            
       </Wraper>
   )
 }
