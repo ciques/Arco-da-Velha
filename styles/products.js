@@ -56,7 +56,6 @@ export const ProductList = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 80%;
-  margin: 0 auto;
 `
 
 export const Filters = styled.div`
@@ -64,7 +63,7 @@ export const Filters = styled.div`
   display: flex;
   width: 80%;
   justify-content: space-between;
-  margin: 20px auto 40px;
+  margin: 20px 0 40px;
 
   & > p {
     margin-top: 20px;

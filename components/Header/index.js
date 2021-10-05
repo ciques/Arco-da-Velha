@@ -21,13 +21,13 @@ function Header(props){
                         Inicio
                     </HeaderItens>
                     <HeaderItens href="/">
-                        Sobre
+                        Arco da Velha
                     </HeaderItens>
                     <HeaderItens href="/products">
                         Produtos
                     </HeaderItens>
                     <HeaderItens href="/contato">
-                        Contato
+                        Fale com a gente
                     </HeaderItens>
                 </Itens>
             </SubHeader>

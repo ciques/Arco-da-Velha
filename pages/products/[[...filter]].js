@@ -123,7 +123,7 @@ export default function Products() {
           <Header logo="../images/logo.jpg" />
           <Content>
             <MenuCategory>
-              Categorias:
+              <p>Categorias: </p>
              
               {genres && 
                 <CategoryTitle>
@@ -133,7 +133,7 @@ export default function Products() {
               {genres &&
                 <div style={{display: 'grid'}}>
                   {genres.map(e => (
-                    <Categoryinput>
+                    <Categoryinput href={'/products/'+e}>
                       {e}
                     </Categoryinput>
                   ))}
@@ -147,7 +147,7 @@ export default function Products() {
               {types &&
                 <div style={{display: 'grid'}}>
                   {types.map(e => (
-                    <Categoryinput href={'products/'+e}>
+                    <Categoryinput href={'/products/'+e}>
                       {e}
                     </Categoryinput>
                   ))}
@@ -161,7 +161,7 @@ export default function Products() {
               {artists &&
                 <div style={{display: 'grid'}}>
                   {artists.map(e => (
-                    <Categoryinput>
+                    <Categoryinput href={'/products/'+e}>
                       {e}
                     </Categoryinput>
                   ))}
@@ -192,7 +192,7 @@ export default function Products() {
                 {products &&
                   products.map(product => (
                     <ProductCard key={product.id} onClick={() => {document.location.href = "/product/"+product.id}}>
-                        <img style={{maxWidth: '95%'}} src='../images/dummy.jpg' />
+                        <img style={{maxWidth: '95%'}} src={product.image_url} />
                         <ProductField>
                           {product.title} - {product.artist}
                         </ProductField>

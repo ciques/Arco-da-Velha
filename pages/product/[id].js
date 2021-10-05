@@ -72,7 +72,7 @@ export default function Product() {
           <a href={'/products/'+product.artist}>{product.artist}</a>     
         </LinkBar>
         <Content>
-          <Photo src='../images/dummy.jpg'/>
+          <Photo src={product.image_url}/>
           <ProductInfo>
             <h1>{product.title}</h1>
             <h2> {product.price ? 'R$ ' + formatPrice(product.price.toFixed(2)) : 'Sem preço definido' }</h2>

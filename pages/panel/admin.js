@@ -134,7 +134,8 @@ function handleChangePage(data){
       const token = localStorage.getItem('userToken');
       const config = {
         headers: { Authorization: `Bearer ${token}` }
-      };
+      };      
+
       const response = await api.post("addProducts", product, config)
 
       const result = response.data;
@@ -142,16 +143,20 @@ function handleChangePage(data){
 
       // Salva foto após salvar produto
       const image = new FormData()
-      image.append('imageFile', selectedImage)
+      image.append('image', selectedImage)
+      image.append("id", result.id);
+      console.log(selectedImage)
   
       const config2 = {
           'Content-Type': 'multipart/form-data',
+          headers: { Authorization: `Bearer ${token}` }
       }
   
-      await api.post('informations/createInformation', image, config2)
+      await api.post('uploadImages', image, config2)
           .then((response) => {
               console.log(response.data)
           })
+
 
 
       toast.success('Produto Cadastrado com sucesso')
@@ -193,7 +198,7 @@ function handleChangePage(data){
             <div>
               <Input>
                 <p>
-                  Título
+                  Nome do Produto
                 </p>
                 <input
                   onChange={(e) => setProduct({...product, title: e.target.value})}
@@ -263,10 +268,13 @@ function handleChangePage(data){
                   onKeyPress={(e) => checkEnter(e)}
                 />
               </Input>
+              <p>
+                Imagem do Produto
+              </p>
               {imgUrl && <img alt="not found" width={"250px"} src={imgUrl} />}
               <input
                 type="file"
-                name="myImage"
+                name="image"
                 onChange={(event) => {
                   console.log(event.target.files[0]);
                   setSelectedImage(event.target.files[0]);
@@ -286,7 +294,7 @@ function handleChangePage(data){
             {productList &&
               productList.map(product => (
                 <ProductCard key={product.id} onClick={() => prepareModal(product)} key={product.id}>
-                    <img style={{maxWidth: '95%'}} src='../images/dummy.jpg' />
+                    <img style={{maxWidth: '95%'}} src={product.image_url} />
                     <ProductField>
                       {product.artist} - {product.title}
                     </ProductField>
