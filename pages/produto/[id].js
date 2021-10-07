@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Wraper, Content, ProductInfo, Photo, LinkBar } from '../../styles/product';
+import { Wraper, Content, ProductInfo, Photo, LinkBar, Questions,
+   QuestionInput, ProductArea, Published } from '../../styles/product';
 
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
@@ -64,22 +65,31 @@ export default function Product() {
     <Wraper>
       {loading && <Loading isLoading={loading} />}
         <Header logo="../images/logo.jpg" />
-        <LinkBar>
-          <a href={'/products/'+product.type}>{product.type}</a>
-          {' > '} 
-          <a href={'/products/'+product.genre}>{product.genre}</a>
-          {' > '}   
-          <a href={'/products/'+product.artist}>{product.artist}</a>     
-        </LinkBar>
+
         <Content>
-          <Photo src={product.image_url}/>
-          <ProductInfo>
-            <h1>{product.title}</h1>
-            <h2> {product.price ? 'R$ ' + formatPrice(product.price.toFixed(2)) : 'Sem preço definido' }</h2>
-            Data de Lançamento: {showData()}
-            </ProductInfo> 
-        </Content>
-          
+          <LinkBar>
+            <a href={'/produtos/'+product.type}>{product.type}</a>
+            {' > '} 
+            <a href={'/produtos/'+product.genre}>{product.genre}</a>
+            {' > '}   
+            <a href={'/produtos/'+product.artist}>{product.artist}</a>     
+          </LinkBar>
+          <ProductArea>
+            <Photo src={product.image_url}/>
+            <ProductInfo>
+              <h1>{product.title}</h1>
+              <h2> {product.price ? 'R$ ' + formatPrice(product.price.toFixed(2)) : 'Sem preço definido' }</h2>
+              Data de Lançamento: {showData()}
+              </ProductInfo> 
+          </ProductArea>
+          <Questions>
+            <p>PERGUNTAS SOBRE ESSE DISCO</p>
+            <QuestionInput/><button>Perguntar</button>
+            <Published>
+              Perguntas feitas
+            </Published>
+          </Questions>
+        </Content>            
     </Wraper>
 )
 }

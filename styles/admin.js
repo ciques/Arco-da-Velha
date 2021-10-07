@@ -77,13 +77,12 @@ export const ProductCard = styled.div`
   border-radius: 10px;
   color: #808080;
   width: 20%;
-  margin-bottom: 20px;
+  margin: 20px;
 `;
 
 export const ProductList = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 80%;
-  justify-content: space-between;
   margin: 0 auto;
 `

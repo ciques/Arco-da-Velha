@@ -45,7 +45,7 @@ export default function Home() {
 
     } catch (error) {
       console.log(error)
-      toast.error('ocorreu um erro ao processar o token de autenticação, tente novamente')
+      toast.error('Seu login expirou, autentique-se novamente')
       setLoading(false)
       setFetched(true)  
       return

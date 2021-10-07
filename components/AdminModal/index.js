@@ -22,7 +22,10 @@ Modal.setAppElement('body');
 export default function AdminModal({openModal, setOpenModal, activeProduct}) {
 
   const [product, setProduct] = useState(activeProduct);
-  const [loading, setLoading] = useState(false);  
+  const [loading, setLoading] = useState(false); 
+  const [imgUrl, setImgUrl] = useState(product.image_url ?? ''); 
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [fetched, setFetched] = useState(false)
 
   function afterOpenModal() {
 
@@ -69,13 +72,32 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
 
       const result = response.data;
       console.log(result);
+
+      // se for pego uma nova imagem atualiza ela
+
+      if(selectedImage) {
+        const image = new FormData()
+        image.append('image', selectedImage)
+        image.append("id", product.id);
+        console.log(selectedImage)
+    
+        const config2 = {
+          'Content-Type': 'multipart/form-data',
+          headers: { Authorization: `Bearer ${token}` }
+        }
+    
+        await api.post('uploadImages', image, config2)
+          .then((response) => {
+              console.log(response.data)
+          })
+      }
+
       toast.success('Produto Atualizado com sucesso')
       setLoading(false);
 
     } catch (error) {
       console.log(error)
       toast.error('ocorreu um erro ao remover o produto')
-      return
     }
 
     setLoading(false);
@@ -85,6 +107,14 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
   function formatPrice(price) {
     return price.replace(",", ".");
   }
+
+  useEffect(() => {
+    if(fetched) {
+      setImgUrl(URL.createObjectURL(selectedImage))
+    } else {
+      setFetched(true)
+    }
+  }, [selectedImage]);
 
   return (
     <div>
@@ -163,17 +193,30 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
               </div>          
             </div>
             <div>
-            <Input>
+              <Input>
                 <p>
                   Data de Lançamento
                 </p>
                 <input
                   type='date'
                   onChange={(e) => setProduct({...product, release_date: e.target.value})}
-                  value={product.release_date}              
+                  value={product.release_date.split('T')[0]} // formata a string do psql pra data             
                 />
               </Input>
             </div>
+            <p>
+              Imagem do Produto
+            </p>
+            {imgUrl && <img alt="not found" width={"250px"} src={imgUrl} />}
+            <input
+              type="file"
+              name="image"
+              onChange={(event) => {
+                console.log(event.target.files[0]);
+                setSelectedImage(event.target.files[0]);
+              }}
+              style={{display: 'block',  margin: '10px auto'}}
+            />
           <div style={{display: 'flex', marginTop: '20px'}}>
             <MenuButton onClick={() => updateProduct()}>
               Editar

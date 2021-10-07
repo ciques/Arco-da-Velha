@@ -9,6 +9,7 @@ import AdminModal from '../../components/AdminModal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import api from '../../services/api';
+import SearchBox from '../../components/SearchBox';
 
 
 export default function Admin() {
@@ -37,6 +38,7 @@ export default function Admin() {
   const [activeProduct, setActiveProduct] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
   const [imgUrl, setImgUrl] = useState('');
+  const [filterPost, setFilterPost] = useState('');
  
 
     async function checkLogin(){
@@ -66,8 +68,13 @@ export default function Admin() {
 
 
   async function Form(thisPage = 1) {
+    setLoading(true)
     try {
-      const response = await api.post("listProducts", { pageSize, page: thisPage })
+      const response = await api.post("listProducts", { 
+        pageSize,
+        page: thisPage,
+        filterPost: filterPost ?? null
+      })
 
       const result = response.data;
 
@@ -115,9 +122,12 @@ function handleChangePage(data){
   }, [menu]);
 
   useEffect(() => {
-    if(fetched) setImgUrl(URL.createObjectURL(selectedImage))
+    if(fetched && selectedImage) setImgUrl(URL.createObjectURL(selectedImage))
   }, [selectedImage]);
 
+  useEffect(() => {
+    if(fetched) Form()
+  }, [filterPost]);
   
 
   function checkEnter(e) {
@@ -189,7 +199,7 @@ function handleChangePage(data){
   
     <Wraper>
     {loading && <Loading isLoading={loading} />}  
-      <Header setMenu={setMenu} />
+      <Header setMenu={setMenu} setFilterPost={setFilterPost}/>
       <Content>
         { menu === 'cadastrar' ?
         <>
@@ -290,6 +300,9 @@ function handleChangePage(data){
         </> 
         : menu == 'remover' &&
         <>
+          <div style={{ margin: '40px auto 20px', width: 'fit-content'}}>
+            <SearchBox  placeholder={'Procurar produto'} handleSearch={(text) => setFilterPost(text)} />
+          </div>          
           <ProductList>
             {productList &&
               productList.map(product => (

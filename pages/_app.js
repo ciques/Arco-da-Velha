@@ -1,4 +1,7 @@
 import "../styles.css"
+import '../components/Header/dropdown.css';
+
+// import 'semantic-ui-css/semantic.min.css'
 
 // Criado para esse import funcionar
 

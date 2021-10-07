@@ -46,8 +46,8 @@ export const Logo = styled.img`
 export const Itens = styled.div`
     display: flex;
     justify-content: space-evenly;
-    width: 90%;
-    max-width: 700px;
+    width: 100%;
+    max-width: 900px;
     margin: auto 0;
 `
 

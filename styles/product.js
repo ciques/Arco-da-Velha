@@ -10,8 +10,7 @@ export const Wraper = styled.div`
 export const Content = styled.div`
   justify-content: center;
   max-width: 80%;
-  display: flex;
-  margin: 20px auto;
+  margin: 40px auto;  
 `
 
 export const Photo = styled.img`
@@ -22,15 +21,41 @@ export const Photo = styled.img`
 export const ProductInfo = styled.div`
   justify-content: center;
   margin-left: 20px;
-
 `
 
 export const LinkBar = styled.div`
   font-size: 20px;
-  margin: 20px auto;
+  margin: 20px 0;
   width: 80%;
 
   & > a {
     text-decoration: none;
+    color: #808080;
+
+    &:hover {
+      color: black;
+    }
   }
 `
+
+export const Questions = styled.div`
+  justify-content: center;
+  padding: 20px 0 0;
+  border-top: solid 1px;
+`
+export const QuestionInput = styled.input`
+  width: 60%;
+  margin-right: 30px;
+  font-size: 25px;
+`
+
+export const ProductArea = styled.div`
+  display: flex;
+  margin-bottom: 40px;
+`
+
+export const Published = styled.div`
+  margin: 40px 0;
+  font-size: 25px;
+`
+

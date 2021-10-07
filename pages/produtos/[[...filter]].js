@@ -5,7 +5,7 @@ import api from '../../services/api';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
 import Pagination from '../../components/Pagination';
-import { Content, MenuCategory, ContentProducts, ProductCard, ProductField, ProductList, Filters, CategoryTitle, Categoryinput } from '../../styles/products';
+import { Content, MenuCategory, ContentProducts, ProductCard, ProductField, ProductList, Filters, CategoryTitle, Categoryinput } from '../../styles/produtos';
 import { SelectType, OptionType } from '../../styles/admin';
 import styled from 'styled-components'
 
@@ -123,7 +123,7 @@ export default function Products() {
           <Header logo="../images/logo.jpg" />
           <Content>
             <MenuCategory>
-              <p>Categorias: </p>
+              <p>Procurar por: </p>
              
               {genres && 
                 <CategoryTitle>
@@ -133,7 +133,7 @@ export default function Products() {
               {genres &&
                 <div style={{display: 'grid'}}>
                   {genres.map(e => (
-                    <Categoryinput href={'/products/'+e}>
+                    <Categoryinput href={'/produtos/'+e}>
                       {e}
                     </Categoryinput>
                   ))}
@@ -147,7 +147,7 @@ export default function Products() {
               {types &&
                 <div style={{display: 'grid'}}>
                   {types.map(e => (
-                    <Categoryinput href={'/products/'+e}>
+                    <Categoryinput href={'/produto/'+e}>
                       {e}
                     </Categoryinput>
                   ))}
@@ -161,7 +161,7 @@ export default function Products() {
               {artists &&
                 <div style={{display: 'grid'}}>
                   {artists.map(e => (
-                    <Categoryinput href={'/products/'+e}>
+                    <Categoryinput href={'/produtos/'+e}>
                       {e}
                     </Categoryinput>
                   ))}
@@ -177,30 +177,38 @@ export default function Products() {
                   </div>
                 }
                 {console.log(filter)}
-                <div style={{marginRight: '40px'}}>
-                  <p>
-                    Ordenar produtos por
-                  </p>
-                  <SelectType  onChange={(e) => setOrder(e.target.value)}>
-                    {OrderBy.map(type => (
-                      <OptionType key={type[0]} value={type[1]}>{type[0]}</OptionType>                
-                    ))}
-                  </SelectType>  
-                  </div>        
+                {products.length && 
+                  <div style={{marginRight: '40px'}}>
+                    <p>
+                      Ordenar produtos por
+                    </p>
+                    <SelectType  onChange={(e) => setOrder(e.target.value)}>
+                      {OrderBy.map(type => (
+                        <OptionType key={type[0]} value={type[1]}>{type[0]}</OptionType>                
+                      ))}
+                    </SelectType>  
+                  </div>
+                }        
               </Filters>
               <ProductList>
-                {products &&
+                {products.length ?
                   products.map(product => (
-                    <ProductCard key={product.id} onClick={() => {document.location.href = "/product/"+product.id}}>
-                        <img style={{maxWidth: '95%'}} src={product.image_url} />
+                    <ProductCard key={product.id} onClick={() => {document.location.href = "/produto/"+product.id}}>
+                        <div style={{width: '220px', height: '220px'}}>
+                          <img style={{width: '100%', height: '100%'}} src={product.image_url} />
+                        </div>
+                        
                         <ProductField>
-                          {product.title} - {product.artist}
+                          {product.title}
                         </ProductField>
                         <ProductField>
                         {product.price ? 'R$' + formatPrice(product.price.toFixed(2)) : 'Sem preço definido' }
                         </ProductField>                
                     </ProductCard>
-                  ))}
+                  )) :
+                  <h4>SEM PRODUTOS CADASTRADOS ATUALMENTE</h4>
+                
+                }
                 </ProductList>
             {size > 1 &&
               <Pagination

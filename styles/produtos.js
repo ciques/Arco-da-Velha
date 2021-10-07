@@ -10,6 +10,7 @@ export const Name = styled.div`
 
 export const Content = styled.div`
   display: flex;
+  min-height: 600px;
 `
 
 
@@ -28,7 +29,7 @@ export const ProductCard = styled.div`
   border: solid 2px #808080;
   border-radius: 10px;
   color: #808080;
-  width: 20%;
+  width: 220px;
   margin-bottom: 20px;
   margin-right: 20px;
   cursor: pointer;
@@ -36,8 +37,9 @@ export const ProductCard = styled.div`
 
 export const ProductField = styled.div`
   display: flex;
-  padding-left: 4%;
-  word-break: break-all;
+  word-break: break-word;
+  margin: 5px;
+  font-size: 20px;
 
   & > p {
     margin: 0 0 10px;
@@ -71,8 +73,10 @@ export const Filters = styled.div`
 `
 
 export const MenuCategory = styled.div`
-  width: 25%;
+  width: 300px;
   font-size: 35px;  
+  margin: 0 50px;
+  border-right: solid 1px;
 `
 
 export const ContentProducts = styled.div`
@@ -84,8 +88,15 @@ export const CategoryTitle = styled.div`
 `
 
 export const Categoryinput = styled.a`
-  font-size: 15px;
+  font-size: 18px;
   margin-left: 20px;
   text-decoration: none;
+  color: #ad728b;
+  margin-bottom: 3px;
+  width: fit-content;
+
+  &:hover {
+    border-bottom: solid 1px;
+  }
 
 `

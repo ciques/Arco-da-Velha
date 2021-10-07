@@ -9,7 +9,7 @@ function logOut(){
     document.location.href = "/panel/login";
   }
 
-function Header({setMenu}){
+function Header({setMenu, setFilterPost}){
     var userName
 
     if (process.browser) {
@@ -34,8 +34,11 @@ function Header({setMenu}){
                     <HeaderItens onClick = {() => setMenu('cadastrar')}>
                         Cadastrar Produtos
                     </HeaderItens>
-                    <HeaderItens onClick = {() => setMenu('remover')}>
+                    <HeaderItens onClick = {() => {setMenu('remover'); setFilterPost('')}}>
                         Editar / Remover Produtos
+                    </HeaderItens>
+                    <HeaderItens onClick = {() => setMenu('remover')}>
+                        Aprovar Comentários
                     </HeaderItens>
                 </Itens>
             </SubHeader>
