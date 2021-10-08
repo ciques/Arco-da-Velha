@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 
 export const Wraper = styled.div`
-  margin: 20px auto;
+  margin: 0 auto;
   justify-content: center;
   padding: 10px;
-  color: #808080;  
+  color: #808080;
+  background-color: #f1eafd;  
 `
 
 export const MenuBox = styled.div`
@@ -37,13 +38,23 @@ export const Input = styled.div`
   & > p {
     margin: 0 0 10px;
     font-size: 25px;
+
+    @media (max-width: 900px) {
+      font-size: 17px;
+    }
   }
 
   & > input {
-    margin: 0 10px 10px;
+    margin-bottom: 10px;
     font-size: 20px;
     border-radius: 5px;
     border: solid 1px #808080;
+    max-width: 95%;
+    box-sizing: border-box;
+
+    @media (max-width: 900px) {
+      font-size: 15px;
+    }
   }
 `
 
@@ -78,6 +89,15 @@ export const ProductCard = styled.div`
   color: #808080;
   width: 20%;
   margin: 20px;
+  background-color: white;
+
+  @media (max-width: 800px) {
+    font-size: 15px;
+    margin: 2.5%;
+    width: 45%;
+    box-sizing: border-box;
+  }
+  
 `;
 
 export const ProductList = styled.div`
@@ -85,4 +105,8 @@ export const ProductList = styled.div`
   flex-wrap: wrap;
   width: 80%;
   margin: 0 auto;
+
+  @media (max-width: 800px) {
+    width: 100%
+  }
 `

@@ -11,6 +11,10 @@ export const Search = styled.div`
   justify-content: space-between;
   margin: 0 20px;
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+
+  @media (max-width: 900px) {
+    width: 250px;
+  }
 `;
 
 export const Input = styled.input`

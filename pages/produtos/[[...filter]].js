@@ -10,8 +10,9 @@ import { SelectType, OptionType } from '../../styles/admin';
 import styled from 'styled-components'
 
 const Wraper = styled.div`
-    background: White;
+    background: #f1eafd;
     color: #808080;
+    
 `
 
 
@@ -197,13 +198,15 @@ export default function Products() {
                         <div style={{width: '220px', height: '220px'}}>
                           <img style={{width: '100%', height: '100%'}} src={product.image_url} />
                         </div>
-                        
-                        <ProductField>
-                          {product.title}
-                        </ProductField>
-                        <ProductField>
-                        {product.price ? 'R$' + formatPrice(product.price.toFixed(2)) : 'Sem preço definido' }
-                        </ProductField>                
+                        <div>
+                          <ProductField>
+                            {product.title}
+                          </ProductField>
+                          <ProductField>
+                          {product.price ? 'R$' + formatPrice(product.price.toFixed(2)) : 'Sem preço definido' }
+                          </ProductField> 
+                        </div>
+               
                     </ProductCard>
                   )) :
                   <h4>SEM PRODUTOS CADASTRADOS ATUALMENTE</h4>

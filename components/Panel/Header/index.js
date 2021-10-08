@@ -34,7 +34,7 @@ function Header({setMenu, setFilterPost}){
                     <HeaderItens onClick = {() => setMenu('cadastrar')}>
                         Cadastrar Produtos
                     </HeaderItens>
-                    <HeaderItens onClick = {() => {setMenu('remover'); setFilterPost('')}}>
+                    <HeaderItens style={{ borderRight: 'none', borderLeft: 'none'}} onClick = {() => {setMenu('remover'); setFilterPost('')}}>
                         Editar / Remover Produtos
                     </HeaderItens>
                     <HeaderItens onClick = {() => setMenu('remover')}>

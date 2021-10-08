@@ -40,7 +40,7 @@ function Header(props){
                         </div>
                     </div>
                     <div class="dropdown">
-                        <button className="dropbtn" style={{cursor: 'pointer'}} onClick={() => document.location.href = "/produtos"}>Produtos <IoIosArrowDown size={'15px'} /></button>
+                        <button className="dropbtn" style={{cursor: 'pointer'}}>Produtos <IoIosArrowDown size={'15px'} /></button>
                         <div class="dropdown-content">
                             <a href="/produtos">Todos</a>
                             <a href="/produtos/CD">CD</a>

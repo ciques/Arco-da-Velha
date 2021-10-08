@@ -34,6 +34,7 @@ export const Wraper = styled.div`
   height: 100%;
   width: 100%;
   margin: -8px;
+  padding: 10px;
 `;
 
 export const Logo = styled.img`
@@ -51,9 +52,17 @@ export const Itens = styled.div`
     margin: auto 0;
 `
 
-export const HeaderItens = styled.a`
+export const HeaderItens = styled.div`
   color: inherit;
   font-size: 1.5em;
   text-decoration: none;
   cursor: pointer;
+
+  @media (max-width: 900px) {
+    font-size: 17px;
+    padding: 5px;
+    width: 33%;
+    text-align: center;
+    border: solid 1px black;
+  }
 `

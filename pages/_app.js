@@ -6,5 +6,6 @@ import '../components/Header/dropdown.css';
 // Criado para esse import funcionar
 
 export default function MyApp({ Component, pageProps }) {
-    return <Component {...pageProps} />
+  
+  return <Component {...pageProps} />
   }

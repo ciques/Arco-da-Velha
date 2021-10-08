@@ -33,6 +33,7 @@ export const ProductCard = styled.div`
   margin-bottom: 20px;
   margin-right: 20px;
   cursor: pointer;
+  background-color: white;
 `;
 
 export const ProductField = styled.div`

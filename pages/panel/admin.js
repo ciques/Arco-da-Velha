@@ -205,7 +205,7 @@ function handleChangePage(data){
         <>
         <MenuBox>
           <div style={{display: 'flex', justifyContent: 'space-around'}}>
-            <div>
+            <div style={{maxWidth: '45%'}}>
               <Input>
                 <p>
                   Nome do Produto
@@ -236,7 +236,7 @@ function handleChangePage(data){
                 />
               </Input>
             </div>
-            <div>
+            <div style={{maxWidth: '45%'}}>
               <Input>
                 <p>
                   Gênero Musical
