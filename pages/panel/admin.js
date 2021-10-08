@@ -27,13 +27,13 @@ export default function Admin() {
   const [page, setPage] = useState(1);
   const [product, setProduct] = useState(
     {
-      title:'',
-      artist:'',
-      price: '',
-      genre: '',
-      release_date: '',
-      state: '',
-      type: ''
+      title: null,
+      artist:null,
+      price: null,
+      genre: null,
+      release_date: null,
+      state: null,
+      type: null
     });
   const [activeProduct, setActiveProduct] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
@@ -208,7 +208,7 @@ function handleChangePage(data){
             <div style={{maxWidth: '45%'}}>
               <Input>
                 <p>
-                  Nome do Produto
+                  Descrição do Produto
                 </p>
                 <input
                   onChange={(e) => setProduct({...product, title: e.target.value})}
@@ -218,7 +218,7 @@ function handleChangePage(data){
               </Input>
               <Input>
                 <p>
-                  Artista
+                  Artista/Empresa
                 </p>
                 <input
                   onChange={(e) => setProduct({...product, artist: e.target.value})}
@@ -270,10 +270,10 @@ function handleChangePage(data){
           <div>
             <Input>
                 <p>
-                  Data de Lançamento
+                  Ano de Lançamento
                 </p>
                 <input
-                  type='date'
+                  type='number'
                   onChange={(e) => setProduct({...product, release_date: e.target.value})}
                   onKeyPress={(e) => checkEnter(e)}
                 />
@@ -309,7 +309,7 @@ function handleChangePage(data){
                 <ProductCard key={product.id} onClick={() => prepareModal(product)} key={product.id}>
                     <img style={{maxWidth: '95%'}} src={product.image_url} />
                     <ProductField>
-                      {product.artist} - {product.title}
+                      {product.title}
                     </ProductField>
                     <ProductField>
                       R$ {formatPrice(product.price.toFixed(2)) ?? 'Sem preço definido' }

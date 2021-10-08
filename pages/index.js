@@ -23,8 +23,8 @@ export default function Home() {
           <Header logo="./images/logo.jpg">
           
           </Header>
-          <Content title='Imagem Dummy'>
-            <img width='' src="./images/logo.jpg"/>
+          <Content>
+            <img  src="./images/logo2.jpg"/>
           </Content>
       </Wraper>
   )

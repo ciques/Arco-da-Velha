@@ -11,8 +11,7 @@ export const Wraper = styled.div`
   & > img {
     margin: 20px auto;
     display: block;
-    width: 100%;
-    max-width: 650px;
+    max-height: 500px
   }
 `;
 

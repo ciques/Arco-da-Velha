@@ -32,7 +32,7 @@ export const Utility = styled.div`
 `;
 
 export const SubHeader = styled.div`
-  background-color: #808080;
+  background-color: #552b4d;
   color: white;
   height: 100%;
   display: flex;

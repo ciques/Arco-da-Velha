@@ -200,7 +200,7 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
                 <input
                   type='date'
                   onChange={(e) => setProduct({...product, release_date: e.target.value})}
-                  value={product.release_date.split('T')[0]} // formata a string do psql pra data             
+                  value={product.release_date ? product.release_date.split('T')[0] : null} // formata a string do psql pra data             
                 />
               </Input>
             </div>
