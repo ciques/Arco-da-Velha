@@ -14,7 +14,13 @@ export const MenuBox = styled.div`
   border-radius: 10px;
   padding: 10px;
   max-width: 600px;
-  text-align: center; 
+  text-align: center;
+  box-sizing: border-box; 
+
+  @media (max-width: 800px) {
+    max-width: 100%;
+    font-size: 15px;
+  }
 `
 
 export const MenuButton = styled.div`
@@ -34,13 +40,14 @@ export const MenuButton = styled.div`
 
 export const Input = styled.div`
   margin: 10px 0;
+  color: #808080;
 
   & > p {
     margin: 0 0 10px;
     font-size: 25px;
 
     @media (max-width: 900px) {
-      font-size: 15 px;
+      font-size: 15px;
     }
   }
 

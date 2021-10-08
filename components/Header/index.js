@@ -28,7 +28,7 @@ function Header(props){
                     <HeaderItens href="/">
                         Destaques
                     </HeaderItens>
-                    <HeaderItens href="/">
+                    <HeaderItens href="/sobre">
                         Arco da Velha
                     </HeaderItens>
                     <div class="dropdown">

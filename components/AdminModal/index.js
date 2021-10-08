@@ -13,6 +13,7 @@ const customStyles = {
     bottom: 'auto',
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
+    maxWidth: '100%',
   },
 };
 
@@ -110,7 +111,7 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
 
   useEffect(() => {
     if(fetched) {
-      setImgUrl(URL.createObjectURL(selectedImage))
+      if(selectedImage) setImgUrl(URL.createObjectURL(selectedImage))
     } else {
       setFetched(true)
     }
@@ -131,10 +132,10 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
         <button onClick={closeModal}>close</button>
         <MenuBox>
           <div style={{display: 'flex', justifyContent: 'space-around'}}>
-            <div>
+            <div style={{width: '50%'}}>
               <Input>
                 <p>
-                  Título
+                  Descrição do Produto
                 </p>
                 <input
                   onChange={(e) => setProduct({...product, title: e.target.value})}
@@ -143,7 +144,7 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
               </Input>
               <Input>
                 <p>
-                  Artista
+                  Artista/Fabricante
                 </p>
                 <input
                   onChange={(e) => setProduct({...product, artist: e.target.value})}
@@ -161,7 +162,7 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
                 />
               </Input>
               </div>
-              <div>
+              <div style={{width: '50%'}}>
                 <Input>
                   <p>
                     Gênero Musical
@@ -195,12 +196,12 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
             <div>
               <Input>
                 <p>
-                  Data de Lançamento
+                  Ano de Lançamento
                 </p>
                 <input
-                  type='date'
+                  type='number'
                   onChange={(e) => setProduct({...product, release_date: e.target.value})}
-                  value={product.release_date ? product.release_date.split('T')[0] : null} // formata a string do psql pra data             
+                  value={product.release_date}        
                 />
               </Input>
             </div>
