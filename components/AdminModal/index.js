@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Modal from 'react-modal';
+import imageCompression from 'browser-image-compression';
+
 import { toast, ToastContainer } from 'react-toastify';
 import Loading from '../Loading';
 import api from '../../services/api';
@@ -17,7 +19,15 @@ const customStyles = {
   },
 };
 
+  // opções para resize da imagem enviada
+  const options = {
+    maxSizeMB: 0.5,
+    // maxWidthOrHeight: 1200,
+    useWebWorker: true
+  }
+
 Modal.setAppElement('body');  
+
 
 
 export default function AdminModal({openModal, setOpenModal, activeProduct}) {
@@ -74,13 +84,14 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
       const result = response.data;
       console.log(result);
 
-      // se for pego uma nova imagem atualiza ela
+      // se for pego uma nova imagem atualiza ela antes da resize nela
 
       if(selectedImage) {
+        const compressedFile = await imageCompression(selectedImage, options);
+
         const image = new FormData()
-        image.append('image', selectedImage)
+        image.append('image', compressedFile)
         image.append("id", product.id);
-        console.log(selectedImage)
     
         const config2 = {
           'Content-Type': 'multipart/form-data',

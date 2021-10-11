@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Wraper, MenuBox, MenuButton, Input, ProductCard, ProductField, ProductList, SelectType, OptionType } from '../../styles/admin';
+import imageCompression from 'browser-image-compression';
 
 import Header from '../../components/Panel/Header';
 import Content from '../../components/Content';
@@ -10,12 +10,20 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import api from '../../services/api';
 import SearchBox from '../../components/SearchBox';
+import { Wraper, MenuBox, MenuButton, Input, ProductCard, ProductField, ProductList, SelectType, OptionType } from '../../styles/admin';
 
 
 export default function Admin() {
   
   // tamanho da paginação na visualização dos produtos 
   const pageSize = 12;
+
+  // opções para resize da imagem enviada
+  const options = {
+    maxSizeMB: 0.5,
+    // maxWidthOrHeight: 1200,
+    useWebWorker: true
+  }
 
   const [fetched, setFetched] = useState(false);
   const [logged, setLogged ] = useState(false);
@@ -152,10 +160,12 @@ function handleChangePage(data){
       console.log(result);
 
       // Salva foto após salvar produto
+
+      const compressedFile = await imageCompression(selectedImage, options);
+
       const image = new FormData()
-      image.append('image', selectedImage)
+      image.append('image', compressedFile)
       image.append("id", result.id);
-      console.log(selectedImage)
   
       const config2 = {
           'Content-Type': 'multipart/form-data',
