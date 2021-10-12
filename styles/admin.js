@@ -61,6 +61,7 @@ export const Input = styled.div`
 
     @media (max-width: 900px) {
       font-size: 15px;
+      margin-bottom: 0;
     }
   }
 `

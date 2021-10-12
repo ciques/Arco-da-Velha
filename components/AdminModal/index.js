@@ -23,12 +23,20 @@ const customStyles = {
   const options = {
     maxSizeMB: 0.5,
     // maxWidthOrHeight: 1200,
-    useWebWorker: true
+    useWebWorker: true,
   }
 
 Modal.setAppElement('body');  
 
+function getImgKey(url) {
+  if(!url){
+    return null
+  }
 
+  var key = url.split('amazonaws.com/')
+  console.log(key[1])
+  return key[1]
+}
 
 export default function AdminModal({openModal, setOpenModal, activeProduct}) {
 
@@ -54,7 +62,7 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
       const config = {
         headers: { Authorization: `Bearer ${token}` }
       };
-      const response = await api.post("removeProducts", {id:product.id}, config)
+      const response = await api.post("removeProducts", {id:product.id, image_url: getImgKey(product.image_url)}, config)
 
       const result = response.data;
       console.log(result);
@@ -79,12 +87,17 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
       const config = {
         headers: { Authorization: `Bearer ${token}` }
       };
+
+      // se tiver uma imagem editada removera a antiga ao atualizar para a nova
+
+      product.imageUpdate = selectedImage ? getImgKey(product.image_url) : null
+
       const response = await api.post("updateProducts", {product}, config)
 
       const result = response.data;
       console.log(result);
 
-      // se for pego uma nova imagem atualiza ela antes da resize nela
+      // se for pego uma nova imagem atualiza ela e antes da resize nela
 
       if(selectedImage) {
         const compressedFile = await imageCompression(selectedImage, options);
@@ -140,8 +153,10 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
         contentLabel="Example Modal"
       >
         {loading && <Loading isLoading={loading} />}  
-        <button onClick={closeModal}>close</button>
         <MenuBox>
+            <MenuButton onClick={() => closeModal()}>
+              voltar
+            </MenuButton>
           <div style={{display: 'flex', justifyContent: 'space-around'}}>
             <div style={{width: '50%'}}>
               <Input>
@@ -219,7 +234,7 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
             <p>
               Imagem do Produto
             </p>
-            {imgUrl && <img alt="not found" width={"250px"} src={imgUrl} />}
+            {imgUrl && <img alt="not found" style={{maxHeight: '200px'}} src={imgUrl} />}
             <input
               type="file"
               name="image"
