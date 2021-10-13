@@ -28,27 +28,27 @@ function Header(props){
                     <HeaderItens href="/">
                         Destaques
                     </HeaderItens>
-                    <HeaderItens href="/sobre">
+                    <HeaderItens removable href="/sobre">
                         Arco da Velha
                     </HeaderItens>
-                    <div class="dropdown">
+                    <div className="dropdown">
                         <button className="dropbtn">Discos/LPs <IoIosArrowDown size={'15px'} /></button>
-                        <div class="dropdown-content">
+                        <div className="dropdown-content">
                             <a href="#">Link 1</a>
                             <a href="#">Link 2</a>
                             <a href="#">Link 3</a>
                         </div>
                     </div>
-                    <div class="dropdown">
+                    <div className="dropdown">
                         <button className="dropbtn" style={{cursor: 'pointer'}}>Produtos <IoIosArrowDown size={'15px'} /></button>
-                        <div class="dropdown-content">
+                        <div className="dropdown-content">
                             <a href="/produtos">Todos</a>
                             <a href="/produtos/CD">CD</a>
                             <a href="/produtos/K7">K7</a>
                             <a href="/produtos/Livros">Livros</a>
                         </div>
                     </div>  
-                    <HeaderItens href="/contato">
+                    <HeaderItens removable href="/contato">
                         Fale com a gente
                     </HeaderItens>
                 </Itens>

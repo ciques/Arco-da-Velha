@@ -21,6 +21,11 @@ export const MenuBox = styled.div`
     max-width: 100%;
     font-size: 15px;
   }
+
+  & > img {
+    max-height: 200px;
+    max-width: 270px;
+  }
 `
 
 export const MenuButton = styled.div`
@@ -95,15 +100,27 @@ export const ProductCard = styled.div`
   border: solid 2px #808080;
   border-radius: 10px;
   color: #808080;
-  width: 20%;
+  width: 220px;
   margin: 20px;
   background-color: white;
+
 
   @media (max-width: 800px) {
     font-size: 15px;
     margin: 2.5%;
-    width: 45%;
+    width: 150px;
     box-sizing: border-box;
+  }
+
+  & > img {
+    width: 220px;
+    height: 220px;
+
+    @media (max-width: 800px) {
+      width: 125px;
+      height: 125px;
+
+    }
   }
   
 `;

@@ -42,7 +42,7 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
 
   const [product, setProduct] = useState(activeProduct);
   const [loading, setLoading] = useState(false); 
-  const [imgUrl, setImgUrl] = useState(product.image_url ?? ''); 
+  const [imgUrl, setImgUrl] = useState(activeProduct.image_url ?? ''); 
   const [selectedImage, setSelectedImage] = useState(null);
   const [fetched, setFetched] = useState(false)
 
@@ -187,6 +187,16 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
                   value={product.price}
                 />
               </Input>
+              <Input>
+                <p>
+                  Ano de Lançamento
+                </p>
+                <input
+                  type='number'
+                  onChange={(e) => setProduct({...product, release_date: e.target.value})}
+                  value={product.release_date}        
+                />
+              </Input>
               </div>
               <div style={{width: '50%'}}>
                 <Input>
@@ -217,24 +227,23 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
                     value={product.state}
                   />
                 </Input>
-              </div>          
-            </div>
-            <div>
-              <Input>
+                <Input style={{margin: '30px auto 0', display: 'flex', fontsize: '20px', cursor: 'pointer'}} onClick={() => setProduct({...product, featured: !product.featured})}>
                 <p>
-                  Ano de Lançamento
+                  <input
+                    type='checkbox'
+                    checked={product.featured}
+                    onClick={() => setProduct({...product, featured: !product.featured})}  
+                  />
+                  {' '} Destacar produto
                 </p>
-                <input
-                  type='number'
-                  onChange={(e) => setProduct({...product, release_date: e.target.value})}
-                  value={product.release_date}        
-                />
-              </Input>
+                {console.log(product.featured)}
+                </Input>
+              </div>          
             </div>
             <p>
               Imagem do Produto
             </p>
-            {imgUrl && <img alt="not found" style={{maxHeight: '200px'}} src={imgUrl} />}
+            {imgUrl && <img alt="not found" src={imgUrl} />}
             <input
               type="file"
               name="image"

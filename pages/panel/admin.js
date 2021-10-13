@@ -16,7 +16,7 @@ import { Wraper, MenuBox, MenuButton, Input, ProductCard, ProductField, ProductL
 export default function Admin() {
   
   // tamanho da paginação na visualização dos produtos 
-  const pageSize = 12;
+  const pageSize = 20;
 
   // opções para resize da imagem enviada
   const options = {
@@ -41,12 +41,14 @@ export default function Admin() {
       genre: null,
       release_date: null,
       state: null,
-      type: null
+      type: null,
+      featured: false
     });
   const [activeProduct, setActiveProduct] = useState({});
   const [selectedImage, setSelectedImage] = useState(null);
   const [imgUrl, setImgUrl] = useState('');
   const [filterPost, setFilterPost] = useState('');
+  const [featured, setFeatured] = useState(false)
  
 
     async function checkLogin(){
@@ -81,7 +83,8 @@ export default function Admin() {
       const response = await api.post("listProducts", { 
         pageSize,
         page: thisPage,
-        filterPost: filterPost ?? null
+        filterPost: filterPost ?? null,
+        featured
       })
 
       const result = response.data;
@@ -135,7 +138,7 @@ function handleChangePage(data){
 
   useEffect(() => {
     if(fetched) Form()
-  }, [filterPost]);
+  }, [filterPost, featured]);
   
 
   function checkEnter(e) {
@@ -245,6 +248,16 @@ function handleChangePage(data){
                   onKeyPress={(e) => checkEnter(e)}
                 />
               </Input>
+              <Input >
+                <p>
+                  Ano de Lançamento
+                </p>
+                <input
+                  type='number'
+                  onChange={(e) => setProduct({...product, release_date: e.target.value})}
+                  onKeyPress={(e) => checkEnter(e)}
+                />
+              </Input>
             </div>
             <div style={{maxWidth: '45%'}}>
               <Input>
@@ -275,32 +288,32 @@ function handleChangePage(data){
                   onKeyPress={(e) => checkEnter(e)}
                 />
               </Input>
+              <Input style={{margin: '30px auto 0', display: 'flex', fontSize: '20px', cursor: 'pointer'}} onClick={() => setProduct({...product, featured: !product.featured})}>
+                <p>
+                  <input
+                    type='checkbox'
+                    checked={product.featured}
+                    onClick={() => setProduct({...product, featured: !product.featured})}                    
+                  />
+                  {' '}Destacar produto
+                </p>
+              </Input>
             </div>  
           </div>        
           <div>
-            <Input>
-                <p>
-                  Ano de Lançamento
-                </p>
-                <input
-                  type='number'
-                  onChange={(e) => setProduct({...product, release_date: e.target.value})}
-                  onKeyPress={(e) => checkEnter(e)}
-                />
-              </Input>
-              <p>
-                Imagem do Produto
-              </p>
-              {imgUrl && <img alt="not found" width={"250px"} src={imgUrl} />}
-              <input
-                type="file"
-                name="image"
-                onChange={(event) => {
-                  console.log(event.target.files[0]);
-                  setSelectedImage(event.target.files[0]);
-                }}
-                style={{display: 'block',  margin: '10px auto'}}
-              />
+            <p>
+              Imagem do Produto
+            </p>
+            {imgUrl && <img alt="not found" width={"250px"} src={imgUrl} />}
+            <input
+              type="file"
+              name="image"
+              onChange={(event) => {
+                console.log(event.target.files[0]);
+                setSelectedImage(event.target.files[0]);
+              }}
+              style={{display: 'block',  margin: '10px auto'}}
+            />
             <MenuButton onClick={() => addProduct()}>
               Cadastrar
             </MenuButton>
@@ -311,13 +324,20 @@ function handleChangePage(data){
         : menu == 'remover' &&
         <>
           <div style={{ margin: '40px auto 20px', width: 'fit-content'}}>
+            <div style={{marginBottom: '20px', textAlign: 'center', fontSize: '20px', cursor: 'pointer'}} onClick={() => setFeatured(!featured)}>
+              <input type="checkbox"
+               checked={featured}
+               onClick={() => setFeatured(!featured)}
+              />
+                Mostrar apenas produtos destaque
+            </div>
             <SearchBox  placeholder={'Procurar produto'} handleSearch={(text) => setFilterPost(text)} />
           </div>          
           <ProductList>
             {productList &&
               productList.map(product => (
                 <ProductCard key={product.id} onClick={() => prepareModal(product)} key={product.id}>
-                    <img style={{maxWidth: '95%'}} src={product.image_url} />
+                    <img src={product.image_url} />
                     <ProductField>
                       {product.title}
                     </ProductField>

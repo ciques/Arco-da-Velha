@@ -46,8 +46,6 @@ export const Wraper = styled.div`
   color: #808080;
   height: 100%;
   width: 100%;
-  margin: -8px;
-  padding: 10px;
 `;
 
 export const Logo = styled.img`
@@ -59,10 +57,12 @@ export const Logo = styled.img`
 
 export const Itens = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     width: 100%;
     max-width: 820px;
     margin: auto 0;
+
+
 `
 
 export const HeaderItens = styled.a`
@@ -72,11 +72,11 @@ export const HeaderItens = styled.a`
   padding: 16px;
 
   &:hover {
-    background-color: #c2c0c0
+    background-color: #7c4a73
   }
 
-  @media (max-width: 420px) {
-    font-size: 17px;
+  @media (max-width: 700px) {
+    display: ${props => props.removable ? "none" : 'block'};
   }
 `
 

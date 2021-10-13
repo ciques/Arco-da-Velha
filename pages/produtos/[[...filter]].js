@@ -35,7 +35,7 @@ export default function Products() {
   const [size, setSize] = useState(1);
   const [filter, setFilter] = useState('');
   const [page, setPage] = useState(1);
-  const [pageSize, setPageSize] = useState(12);
+  const [pageSize, setPageSize] = useState(20);
   const [order, setOrder] = useState('name');
   const [types, setTypes] = useState([]);
   const [artists, setArtists] = useState([]);

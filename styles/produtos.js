@@ -47,7 +47,7 @@ export const ProductField = styled.div`
   }
 
   @media (max-width: 420px) {
-    font-size: 17px;
+    font-size: 15px;
   }
 `
 
