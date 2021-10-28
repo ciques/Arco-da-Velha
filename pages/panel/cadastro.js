@@ -5,89 +5,48 @@ import { Wraper, Title, LoginBox, LoginButton, Input } from '../../styles/login'
 import { ToastContainer, toast } from 'react-toastify';
 import Loading from '../../components/Loading';
 import 'react-toastify/dist/ReactToastify.min.css';
-import { useHistory } from 'react-router-dom';
 import api from '../../services/api'
 
 
-export default function Home() {
+export default function Registro() {
 
   const [fetched, setFetched] = useState(false);
   const [password, setPassword ] = useState('');
   const [email, setEmail] = useState('');
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);  
+  const [token, setToken] = useState(null);  
 
 
-  
+    async function login() {
+      try {
+        const response = await api.post("userRegister", { email, password, token })
 
-  async function checkLogin(){
-    const token = localStorage.getItem('userToken');
+        const result = response.data;
+        console.log(result.user);
 
-    if (!token) {
-      setFetched(true);
-      setLoading(false);
-      return;
-    }
+        if(!result.user) {
+          toast.error('email ou senha inválidos tente novamente')
+          return
+        }
 
-    try {
-      const config = {
-        headers: { Authorization: `Bearer ${token}` }
-      };
+        console.log(result.token);
+        const user = result.user;
+        
+        localStorage.setItem('userToken', user.token);
+        localStorage.setItem('userName', user.name);
 
-      const response = await api.post("refresh", {}, config)
-      console.log(response);
-      if(response.status == 200) {
+        setLoading(true)
         document.location.href = "/panel/admin";
-      }
-      console.log(response)
 
-      if(response.error == "Token inválido") {
-        setLoading(false)
-        setFetched(true)  
-      }
-
-    } catch (error) {
-      console.log(error)
-      toast.error('Seu login expirou, autentique-se novamente')
-      setLoading(false)
-      setFetched(true)  
-      return
-    }
-    setLoading(false)
-    setFetched(true)  
-  }
-
-  async function login() {
-    try {
-      const response = await api.post("login", { email, password })
-
-      const result = response.data;
-      console.log(result);
-
-      if(!result.token) {
-        toast.error('email ou senha inválidos tente novamente')
+      } catch (error) {
+        console.log(error)
+        toast.error('ocorreu um erro ao iniciar login')
         return
       }
-
-      console.log(result.token);
-      const user = result.user;
-      
-      localStorage.setItem('userToken', result.token);
-      localStorage.setItem('userName', user.name);
-
-      setLoading(true)
-      document.location.href = "/panel/admin";
-
-    } catch (error) {
-      console.log(error)
-      toast.error('ocorreu um erro ao iniciar login')
-      return
-    }
   }
 
   useEffect(() => {    
-    if (!fetched) {
-      checkLogin();
-    }
+    setLoading(false);
   }, [fetched]);
 
   function checkEnter(e) {
@@ -99,6 +58,7 @@ export default function Home() {
 
   function onChange(value) {
     console.log("Captcha value:", value);
+    setToken(value)
   }
 
 
@@ -131,11 +91,12 @@ export default function Home() {
           />
         </Input>
         <ReCAPTCHA
+          style={{ width: 'fit-content', margin:'20px auto'}}
           sitekey="6LcLWfccAAAAAMOiT5exisBfebFD5clOoQqxdD3Z"
           onChange={onChange}
         />,
         <LoginButton onClick={() => login()}>
-          Login
+          Registrar
         </LoginButton>
         <ToastContainer position='bottom-center' />
       </LoginBox>

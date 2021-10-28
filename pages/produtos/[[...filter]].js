@@ -148,7 +148,7 @@ export default function Products() {
               {types &&
                 <div style={{display: 'grid'}}>
                   {types.map(e => (
-                    <Categoryinput href={'/produto/'+e}>
+                    <Categoryinput href={'/produtos/'+e}>
                       {e}
                     </Categoryinput>
                   ))}
