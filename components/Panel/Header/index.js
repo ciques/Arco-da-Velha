@@ -14,7 +14,7 @@ function Header({setMenu, setFilterPost}){
 
     if (process.browser) {
         userName = localStorage.getItem('userName');
-     }
+    }
 
 
     return (

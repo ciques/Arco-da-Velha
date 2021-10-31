@@ -14,6 +14,7 @@ export default function Home() {
   const [size, setSize] = useState(1);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(25);
+  const [logged, setLogged] = useState(false);
 
 
   async function Form() {
@@ -59,7 +60,7 @@ export default function Home() {
 
   return (
       <Wraper>
-          <Header logo="./images/logo.jpg"/>
+          <Header setLogged={setLogged} logo="./images/logo.jpg"/>
           <Content>            
             <Featured>
               Do Arco Da Velha para você

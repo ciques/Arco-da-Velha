@@ -20,7 +20,6 @@ export const Main = styled.div`
 
 export const Utility = styled.div`
   color: #808080;
-  display: flex;
 
   & > p {
     margin: 0;

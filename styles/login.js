@@ -34,7 +34,7 @@ export const LoginButton = styled.div`
   font-size: 16px;
   padding: 10px 15px;
   border: none;
-  width: 50px;
+  width: fit-content;
   margin: 0 auto;
 `
 

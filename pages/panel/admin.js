@@ -293,7 +293,7 @@ function handleChangePage(data){
                   <input
                     type='checkbox'
                     checked={product.featured}
-                    onClick={() => setProduct({...product, featured: !product.featured})}                    
+                    onChange={() => setProduct({...product, featured: !product.featured})}                    
                   />
                   {' '}Destacar produto
                 </p>
@@ -327,7 +327,7 @@ function handleChangePage(data){
             <div style={{marginBottom: '20px', textAlign: 'center', fontSize: '20px', cursor: 'pointer'}} onClick={() => setFeatured(!featured)}>
               <input type="checkbox"
                checked={featured}
-               onClick={() => setFeatured(!featured)}
+               onChange={() => setFeatured(!featured)}
               />
                 Mostrar apenas produtos destaque
             </div>

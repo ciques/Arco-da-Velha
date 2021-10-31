@@ -16,6 +16,10 @@ export const Content = styled.div`
 export const Photo = styled.img`
   justify-content: center;
   max-width: 450px;
+
+  @media (max-width: 420px) {
+    max-width: 250px;
+  }
 `
 
 export const ProductInfo = styled.div`
@@ -43,8 +47,8 @@ export const Questions = styled.div`
   padding: 20px 0 0;
   border-top: solid 1px;
 `
-export const QuestionInput = styled.input`
-  width: 60%;
+export const QuestionInput = styled.textarea`
+  width: 80%;
   margin-right: 30px;
   font-size: 25px;
 `
@@ -52,10 +56,19 @@ export const QuestionInput = styled.input`
 export const ProductArea = styled.div`
   display: flex;
   margin-bottom: 40px;
+
+  @media (max-width: 420px) {
+    display: block;
+  }
 `
 
 export const Published = styled.div`
   margin: 40px 0;
   font-size: 25px;
 `
+
+export const Comments = styled.div`
+
+`
+
 

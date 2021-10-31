@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Wraper, Content, ProductInfo, Photo, LinkBar, Questions,
-   QuestionInput, ProductArea, Published } from '../../styles/product';
+   QuestionInput, ProductArea, Published, Comments } from '../../styles/product';
 
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
@@ -18,6 +18,9 @@ export default function Product() {
   const [fetched, setFetched] = useState(false);
   const [loading, setLoading] = useState(false);
   const [product, setProduct] = useState({});
+  const [question, setQuestion] = useState('');
+  const [logged, setLogged] = useState(false)
+  const [comments, setComments] = useState([])
 
   useEffect(() => {    
     if(!router.isReady)return;
@@ -41,7 +44,13 @@ export default function Product() {
       console.log(result);
 
       setProduct(result[0]);
-      console.log(result[0]);    
+      console.log(result[0]);
+      
+      const response2 = await api.post("listComments", {id}, config)
+
+      const comments = response2.data.comments
+      setComments(comments)
+      console.log(comments)
 
     } catch (error) {
       console.log('error')
@@ -61,10 +70,29 @@ export default function Product() {
     return dataFormatada
   }
 
+  async function sendQuestion() {
+    if(!logged){
+      toast.warning('você precisa fazer login para comentar')
+      return
+    }
+    try {
+      toast.success('boa'+question)
+      const token = localStorage.getItem('userToken');
+      const id = router.query.id
+      const config = {
+        headers: { Authorization: `Bearer ${token}` }
+      };
+      const response = await api.post("productComment", {productId: id, question}, config)
+    } catch (error) {
+
+    }
+
+  }
+
   return (
     <Wraper>
       {loading && <Loading isLoading={loading} />}
-        <Header logo="../images/logo.jpg" />
+        <Header setLogged={setLogged} logo="../images/logo.jpg" />
 
         <Content>
           <LinkBar>
@@ -84,12 +112,21 @@ export default function Product() {
           </ProductArea>
           <Questions>
             <p>PERGUNTAS SOBRE ESSE DISCO</p>
-            <QuestionInput/><button>Perguntar</button>
+            <QuestionInput value={question} onChange={(e) => setQuestion(e.target.value)}/><button onClick={() => sendQuestion()}>Perguntar</button>
             <Published>
-              Perguntas feitas
+              <p>Perguntas e Comentarios</p>
+              {comments.length && 
+                comments.map(comment => 
+                  <Comments>
+                    <p style={{fontSize: '15px', margin: '0'}}>comentario feito por {comment.name}</p>    
+
+                    <p style={{ marginTop: '0'}}>{comment.comment}</p>
+                  </Comments>            
+                )}
             </Published>
           </Questions>
-        </Content>            
+        </Content>
+        <ToastContainer/>        
     </Wraper>
 )
 }

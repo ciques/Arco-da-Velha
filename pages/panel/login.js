@@ -75,7 +75,7 @@ export default function Home() {
       localStorage.setItem('userName', user.name);
 
       setLoading(true)
-      document.location.href = "/panel/admin";
+      window.history.back()
 
     } catch (error) {
       console.log(error)
@@ -130,10 +130,6 @@ export default function Home() {
             onKeyPress={(e) => checkEnter(e)}
           />
         </Input>
-        <ReCAPTCHA
-          sitekey="6LcLWfccAAAAAMOiT5exisBfebFD5clOoQqxdD3Z"
-          onChange={onChange}
-        />,
         <LoginButton onClick={() => login()}>
           Login
         </LoginButton>

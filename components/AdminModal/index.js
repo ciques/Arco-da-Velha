@@ -232,7 +232,7 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
                   <input
                     type='checkbox'
                     checked={product.featured}
-                    onClick={() => setProduct({...product, featured: !product.featured})}  
+                    onChange={() => setProduct({...product, featured: !product.featured})}  
                   />
                   {' '} Destacar produto
                 </p>
