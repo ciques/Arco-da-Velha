@@ -40,6 +40,7 @@ export default function Products() {
   const [types, setTypes] = useState([]);
   const [artists, setArtists] = useState([]);
   const [genres, setGenres] = useState([]);
+  const [logged, setLogged] = useState(false);
 
   // useEffect(() => {
   //   if(!router.isReady)return;
@@ -121,7 +122,7 @@ export default function Products() {
   return (
       <Wraper>
         {loading && <Loading isLoading={loading} />}
-          <Header logo="../images/logo.jpg" />
+          <Header setLogged={setLogged} logo="../images/logo.jpg" />
           <Content>
             <MenuCategory>
               <p>Procurar por: </p>

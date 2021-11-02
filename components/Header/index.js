@@ -96,26 +96,53 @@ function Header(props) {
                     <HeaderItens href="/">
                         Destaques
                     </HeaderItens>
-                    <HeaderItens removable href="/sobre">
-                        Arco da Velha
-                    </HeaderItens>
+                    <div className="dropdown">
+                        <button className="dropbtn" style={{ cursor: 'pointer' }}>Produtos <IoIosArrowDown size={'15px'} /></button>
+                        <div  className="dropdown-content">
+                            <a href="/produtos">Todos</a>
+                            <div style={{display: 'flex'}}> 
+                                <div> 
+                                    <a href="/produtos/CD">CD</a>
+                                    <a href="/produtos/K7">K7</a>
+                                    <a href="/produtos/toca disco">Toca Discos</a>
+                                </div>
+                                <div>
+                                    <a href="/produtos/vhs">VHS</a>
+                                    <a href="/produtos/dvd">DVD</a>   
+                                    <a href="/produtos/compactos">Vinil Compactos</a>                                 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div className="dropdown">
                         <button className="dropbtn">Discos/LPs <IoIosArrowDown size={'15px'} /></button>
                         <div className="dropdown-content">
-                            <a href="#">Link 1</a>
-                            <a href="#">Link 2</a>
-                            <a href="#">Link 3</a>
+                            <div style={{display: 'flex'}}>
+                                <div>
+                                    <a href="/produtos/Pop Rock">Pop Rock</a>
+                                    <a href="/produtos/Anos 80">Anos 80</a>
+                                    <a href="/produtos/samba">Samba</a>
+                                    <a href="/produtos/Novelas">Novelas</a>
+                                </div>
+                                <div>
+                                    <a href="/produtos/Orquestras">Orquestras</a>
+                                    <a href="/produtos/Classica">Classica</a>
+                                    <a href="/produtos/Jazz">Jazz</a>
+                                    <a href="/produtos/Filmes">Filmes</a>
+                                </div>
+                                <div>
+                                    <a href="/produtos/Discoteque">Discoteque</a>
+                                    <a href="/produtos/Hits">Hits</a>
+                                    <a href="/produtos/Rock Nacional">Rock Nacional</a>
+                                    <a href="/produtos/Funk">Funk</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="dropdown">
-                        <button className="dropbtn" style={{ cursor: 'pointer' }}>Produtos <IoIosArrowDown size={'15px'} /></button>
-                        <div className="dropdown-content">
-                            <a href="/produtos">Todos</a>
-                            <a href="/produtos/CD">CD</a>
-                            <a href="/produtos/K7">K7</a>
-                            <a href="/produtos/Livros">Livros</a>
-                        </div>
-                    </div>
+                    <HeaderItens removable href="/sobre">
+                        Arco da Velha
+                    </HeaderItens>
                     <HeaderItens removable href="/contato">
                         Fale com a gente
                     </HeaderItens>
