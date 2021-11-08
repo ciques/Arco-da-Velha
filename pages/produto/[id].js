@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Wraper, Content, ProductInfo, Photo, LinkBar, Questions,
-   QuestionInput, ProductArea, Published, Comments } from '../../styles/product';
+   QuestionInput, ProductArea, Published, Comments, ProductButton, ButtonText } from '../../styles/product';
 
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
@@ -89,6 +89,12 @@ export default function Product() {
 
   }
 
+  function formatToZap(title) {
+    console.log(title)
+    console.log(title ? title.replace(' ', '%20') : null)
+    return title ? title.replace(' ', '%20') : null
+  }
+
   return (
     <Wraper>
       {loading && <Loading isLoading={loading} />}
@@ -108,21 +114,26 @@ export default function Product() {
               <h1>{product.title}</h1>
               <h2> {product.price ? 'R$ ' + formatPrice(product.price.toFixed(2)) : 'Sem preço definido' }</h2>
               Data de Lançamento: {showData()}
-              </ProductInfo> 
+              <ProductButton>
+                <ButtonText href={'https://wa.me/5551991980229?&text=Ola%20Jorge%20quero%20saber%20mais%20sobre%20o%20anuncio%20de%20'+formatToZap(product.title)}>
+                  FALE OU NEGOCIE COM O VENDEDOR
+                </ButtonText>
+              </ProductButton>
+            </ProductInfo> 
           </ProductArea>
           <Questions>
             <p>PERGUNTAS SOBRE ESSE DISCO</p>
             <QuestionInput value={question} onChange={(e) => setQuestion(e.target.value)}/><button onClick={() => sendQuestion()}>Perguntar</button>
             <Published>
               <p>Perguntas e Comentarios</p>
-              {comments.length && 
+              {comments.length ? 
                 comments.map(comment => 
                   <Comments>
                     <p style={{fontSize: '15px', margin: '0'}}>comentario feito por {comment.name}</p>    
 
                     <p style={{ marginTop: '0'}}>{comment.comment}</p>
                   </Comments>            
-                )}
+                ) : 'Sem perguntas até agora'}
             </Published>
           </Questions>
         </Content>

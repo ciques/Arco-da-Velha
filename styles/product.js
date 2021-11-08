@@ -71,4 +71,25 @@ export const Comments = styled.div`
 
 `
 
+export const ProductButton = styled.div`
+  margin-top: 25px;
+  font-size: 12px;
+`
+
+export const ButtonText = styled.a`
+  border-radius: 5px;
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  height: 19px;
+  letter-spacing: .02em;
+  line-height: 19px;
+  padding: 15px 24px;
+  white-space: nowrap;
+  background-color: #01e675;
+  color: #fff!important;
+  text-decoration: none
+`
+
+
 
