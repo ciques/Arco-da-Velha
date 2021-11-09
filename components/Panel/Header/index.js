@@ -37,8 +37,8 @@ function Header({setMenu, setFilterPost}){
                     <HeaderItens style={{ borderRight: 'none', borderLeft: 'none'}} onClick = {() => {setMenu('remover'); setFilterPost('')}}>
                         Editar / Remover Produtos
                     </HeaderItens>
-                    <HeaderItens onClick = {() => setMenu('remover')}>
-                        Aprovar Comentários
+                    <HeaderItens onClick = {() => document.location.href = "/"}>
+                        Voltar para o site
                     </HeaderItens>
                 </Itens>
             </SubHeader>

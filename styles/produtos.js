@@ -59,6 +59,12 @@ export const ProductList = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 80%;
+
+  @media (max-width: 420px) {
+    width: min-content;
+    margin: 0 auto;
+  }
+
 `
 
 export const Filters = styled.div`
@@ -71,6 +77,11 @@ export const Filters = styled.div`
   & > p {
     margin-top: 20px;
   }
+
+  @media (max-width: 600px) {
+    margin: 40px auto;
+    display: block;
+  }
 `
 
 export const MenuCategory = styled.div`
@@ -78,10 +89,18 @@ export const MenuCategory = styled.div`
   font-size: 35px;  
   margin: 0 50px;
   border-right: solid 1px;
+
+  @media (max-width: 600px) {
+    display: none;
+  }
 `
 
 export const ContentProducts = styled.div`
   width: 75%;
+
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `
 
 export const CategoryTitle = styled.div`

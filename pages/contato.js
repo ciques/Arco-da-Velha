@@ -1,11 +1,13 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import Header from '../components/Header'
 import Content from '../components/Content'
 
 function Contato() {
+    const [logged, setLogged] = useState(false);
+
     return (
         <div>
-            <Header logo="./images/logo.jpg">
+            <Header setLogged={setLogged} logo="./images/logo.jpg">
             
             </Header>
             <Content>

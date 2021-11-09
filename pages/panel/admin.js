@@ -53,16 +53,19 @@ export default function Admin() {
 
     async function checkLogin(){
       const token = localStorage.getItem('userToken');
+      const admin = localStorage.getItem('admin');
 
-      if (!token) {
-          document.location.href = "/panel/login";
+      if (!token || !admin) {
+        if(token) {
+          document.location.href = "/";
+        } else document.location.href = "/panel/login";
       }
       try {
         const config = {
           headers: { Authorization: `Bearer ${token}` }
         };
 
-        const response = await api.post("refresh", {}, config)
+        const response = await api.post("loginAdmin", {}, config)
         console.log(response);
 
         setLogged(true)
@@ -211,7 +214,9 @@ function handleChangePage(data){
   return (
   
     <Wraper>
-    {loading && <Loading isLoading={loading} />}  
+    {loading && <Loading isLoading={loading} />}
+      {!loading &&  
+      <>
       <Header setMenu={setMenu} setFilterPost={setFilterPost}/>
       <Content>
         { menu === 'cadastrar' ?
@@ -363,6 +368,8 @@ function handleChangePage(data){
         
         }
         </Content>
+        </>
+        }
 
       </Wraper>
   )

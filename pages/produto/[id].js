@@ -83,6 +83,9 @@ export default function Product() {
         headers: { Authorization: `Bearer ${token}` }
       };
       const response = await api.post("productComment", {productId: id, question}, config)
+
+      Form();
+      setQuestion('')
     } catch (error) {
 
     }

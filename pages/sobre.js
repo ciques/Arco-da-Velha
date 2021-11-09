@@ -4,29 +4,34 @@ import { Wraper, Content, History } from '../styles/sobre';
 
 
 export default function Home() {
+  const [logged, setLogged] = useState(false);
 
 
   return (
       <Wraper>
-          <Header logo="./images/logo.jpg">
+          <Header setLogged={setLogged} logo="./images/logo.jpg">
           
           </Header>
-          <Content>            
+          <Content>  
             <img  src="./images/logo2.jpg"/>
             <History>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vel metus ipsum. 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam consectetur sit
-             amet sem convallis finibus. Proin in fringilla neque. Donec sem libero, ornare at mauris nec, 
-             aliquam sodales lorem. Nam malesuada felis et molestie luctus. Duis in massa ultricies, vulputate turpis ut,
-              rhoncus urna. In in egestas arcu. Nam augue lorem, aliquam vel augue ut, aliquam ultricies ex. Etiam a sapien quam.
-               Integer id porta neque, vitae cursus ipsum. Quisque ex risus, accumsan eget nulla nec, porttitor ullamcorper turpis.
-                Aliquam commodo neque quis elit semper, sit amet sollicitudin nisi volutpat. Interdum et malesuada fames ac ante ipsum primis in faucibus. 
-                Cras nec diam sed erat ornare pellentesque. Aenean non lorem at nisi dictum molestie sagittis at tortor.
+              História da Empresa  Arco da Velha Discos POA/RS
+              No início, era um colecionador de discos de vinil, conhecido antes como lps ou os famosos bolachões. Por volta do ano 2003, descobri uma feira de lps que tinha no 
+              Mercado Público onde havia alguns expositores que vendiam seus discos. Como colecionava e já tinha uma quantidade razoável de discos, fui convidado  
+              a participar da feira, que na qual  sou integrante até hoje.<br/><br/>
 
-            Fusce eget tortor et eros aliquet aliquet. Praesent quis rutrum libero. Suspendisse tincidunt laoreet dui. Vivamus id interdum ex,
-            et ullamcorper nulla. Sed elit sem, hendrerit a maximus quis, congue eget velit. Praesent gravida urna eu pellentesque suscipit. 
-            Donec semper suscipit diam. Mauris malesuada nisi in tellus laoreet volutpat. Etiam semper mattis arcu. Ut ut hendrerit ligula.
-            Vestibulum faucibus leo ac risus tincidunt, nec congue ex dapibus.
+              A feira de Vinil no Mercado Público faz parte da programação de  eventos culturais e feiras promovidas pela Prefeitura de Porto Alegre, na qual tem a duração de 05 dias,
+              de segunda a sábado e acontece todo o mês com datas específicas.<br/><br/>
+
+              Em 05 /07/2010 foi criada o Certificado da Condicão de  MEI ( Micro Empreendedor Individual), com nome Empresarial de Jorge Spilmann da Rosa.
+              Com o propósito de sair da informalidade e ter acesso oficialmente ao mercado de vendas e expandir as vendas da empresa, comecei a participar de outras feiras e eventos, 
+              onde exponho e comercializo meus produto até hoje.<br/><br/>
+
+              Com o avanço tecnológico e advento da internet  e mídias socias hoje em dia, foi criada várias ferramentas para impulsionar as vendas de produtos das empresas, como, facebook, 
+              Whatsapp, Instagram e sites on line de compra e venda de produtos variáveis, onde se tornou uma opção nova para otimizar e expandir  as vendas das empresas.<br/><br/>
+
+              Hoje trabalho com mais produtos além  dos lps, como cds, fitas K7, DVDs, VHS, livros e aparelhos de som, onde uso também as redes sociais e
+               sites de compra e vendas para expandir e impulsionar minhas vendas.<br/><br/>
             </History>
           </Content>
       </Wraper>

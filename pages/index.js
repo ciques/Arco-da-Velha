@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import Pagination from '../components/Pagination';
 import Header from '../components/Header'
 import Content from '../components/Content'
+import Loading from '../components/Loading';
 import { Wraper, Featured, ProductCard, ProductField, ProductList, ProductPhoto } from '../styles/index';
 import api from '../services/api';
 
@@ -60,6 +61,9 @@ export default function Home() {
 
   return (
       <Wraper>
+        {loading && <Loading isLoading={loading} />}
+        {!loading &&  
+          <>
           <Header setLogged={setLogged} logo="./images/logo.jpg"/>
           <Content>            
             <Featured>
@@ -93,6 +97,8 @@ export default function Home() {
               />
             }
           </Content>
+          </>
+        }
       </Wraper>
   )
 }

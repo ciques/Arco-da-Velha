@@ -122,6 +122,8 @@ export default function Products() {
   return (
       <Wraper>
         {loading && <Loading isLoading={loading} />}
+        {!loading && 
+        <>
           <Header setLogged={setLogged} logo="../images/logo.jpg" />
           <Content>
             <MenuCategory>
@@ -178,19 +180,20 @@ export default function Products() {
                     EXIBINDO RESULTADOS PARA: {filter.toUpperCase()}
                   </div>
                 }
-                {console.log(filter)}
-                {products.length && 
+                {console.log(products.length)}
+                {products.length ? 
                   <div style={{marginRight: '40px'}}>
                     <p>
                       Ordenar produtos por
                     </p>
-                    <SelectType  onChange={(e) => setOrder(e.target.value)}>
+                    <SelectType onChange={(e) => setOrder(e.target.value)}>
                       {OrderBy.map(type => (
                         <OptionType key={type[0]} value={type[1]}>{type[0]}</OptionType>                
                       ))}
                     </SelectType>  
                   </div>
-                }        
+                  : <></>
+                }       
               </Filters>
               <ProductList>
                 {products.length ?
@@ -222,8 +225,8 @@ export default function Products() {
             }
             </ContentProducts>
           </Content>
-
-            
+          </>
+          }
       </Wraper>
   )
 }

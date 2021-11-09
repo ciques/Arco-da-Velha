@@ -13,13 +13,14 @@ export default function Registro() {
   const [fetched, setFetched] = useState(false);
   const [password, setPassword ] = useState('');
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [loading, setLoading] = useState(true);  
   const [token, setToken] = useState(null);  
 
 
     async function login() {
       try {
-        const response = await api.post("userRegister", { email, password, token })
+        const response = await api.post("userRegister", { email, password, name, token })
 
         const result = response.data;
         console.log(result.user);
@@ -72,6 +73,15 @@ export default function Registro() {
         Bem vindo ao painel de administração
       </Title>
       <LoginBox>
+        <Input>
+          <p>
+            Digite o Seu Nome
+          </p>
+          <input 
+            onChange={(e) => setName(e.target.value)}
+            onKeyPress={(e) => checkEnter(e)}
+          />
+        </Input>
         <Input>
           <p>
             Email
