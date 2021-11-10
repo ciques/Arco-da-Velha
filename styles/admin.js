@@ -3,9 +3,10 @@ import styled from 'styled-components';
 export const Wraper = styled.div`
   margin: 0 auto;
   justify-content: center;
-  padding: 10px;
   color: #808080;
-  background-color: #f1eafd;  
+  background-color: #f1eafd;
+  min-height: 100vh;
+  overflow-x: hidden;  
 `
 
 export const MenuBox = styled.div`

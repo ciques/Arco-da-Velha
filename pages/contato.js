@@ -12,7 +12,7 @@ function Contato() {
             </Header>
             <Content>
                 <div style={{textAlign: 'center'}}>
-                    Telefone para contato (51)91980229
+                    Telefone para contato (51)991980229
                 </div>
             </Content>
         </div>

@@ -76,7 +76,7 @@ export default function Product() {
       return
     }
     try {
-      toast.success('boa'+question)
+      toast.success('Comentário feito com sucesso')
       const token = localStorage.getItem('userToken');
       const id = router.query.id
       const config = {
