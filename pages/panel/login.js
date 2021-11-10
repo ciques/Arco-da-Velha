@@ -73,8 +73,8 @@ export default function Home() {
       
       localStorage.setItem('userToken', result.token);
       localStorage.setItem('userName', user.name);
+      localStorage.setItem('admin', user.is_admin);
 
-      setLoading(true)
       window.history.back()
 
     } catch (error) {
@@ -130,9 +130,16 @@ export default function Home() {
             onKeyPress={(e) => checkEnter(e)}
           />
         </Input>
-        <LoginButton onClick={() => login()}>
-          Login
-        </LoginButton>
+        <div style={{display: 'flex'}}>
+          <LoginButton onClick={() => login()}>
+            Login
+          </LoginButton>
+          <LoginButton onClick={() => document.location.href = '/'} style={{backgroundColor: '#552b4d'}}>
+            <a style={{color: '#fff', textDecoration: 'none'}} href='/'>
+              voltar ao site
+            </a> 
+          </LoginButton>
+        </div>
         <ToastContainer position='bottom-center' />
       </LoginBox>
       

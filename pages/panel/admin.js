@@ -55,10 +55,12 @@ export default function Admin() {
       const token = localStorage.getItem('userToken');
       const admin = localStorage.getItem('admin');
 
-      if (!token || !admin) {
-        if(token) {
-          document.location.href = "/";
-        } else document.location.href = "/panel/login";
+      if (!token) {
+        document.location.href = "/panel/login";
+      }
+
+      if (!admin) {
+        document.location.href = "/";
       }
       try {
         const config = {
@@ -72,7 +74,13 @@ export default function Admin() {
       } catch (error) {
         console.log(error)
         toast.error('ocorreu um erro ao processar o token de autenticação')
-        document.location.href = "/panel/login";
+
+
+        if(admin){
+          document.location.href = "/"; 
+        } else {
+          document.location.href = "/panel/login"; 
+        }
         return
       }
       setLoading(false)
@@ -151,14 +159,65 @@ function handleChangePage(data){
     } 
   }
 
+  function validateForm(){
+    if(!product.title) {
+      toast.error('preencha o campo do título do produto')
+      return false
+    }
+
+    if(!product.artist) {
+      toast.error('preencha o campo do artista ou empresa do produto')
+      return false
+    }
+
+    if(!product.price) {
+      toast.error('preencha o campo do preço do produto')
+      return false   
+    }
+
+    if(!product.release_date) {
+      toast.error('preencha o ano de lançamento ou fabricação do produto')
+      return false   
+    }
+
+    if(!product.state) {
+      toast.error('preencha o estado do produto')
+      return false   
+    }
+
+    if(!product.type) {
+      toast.error('Informe o tipo do produto')
+      return false   
+    }
+
+    if(!product.type) {
+      toast.error('Informe o tipo do produto')
+      return false   
+    }
+
+    if(!selectedImage) {
+      toast.error('cadastre uma imagem para o produto')
+      return false
+    }
+
+    return true
+  }
+
   async function addProduct(){
     setLoading(true);
+
+    if(!validateForm()){
+      setLoading(false)
+      return
+    }
 
     try {
       const token = localStorage.getItem('userToken');
       const config = {
         headers: { Authorization: `Bearer ${token}` }
-      };      
+      };
+      
+      
 
       const response = await api.post("addProducts", product, config)
 
@@ -186,7 +245,20 @@ function handleChangePage(data){
 
 
       toast.success('Produto Cadastrado com sucesso')
-      setMenu('remover');
+
+      setSelectedImage(null)
+      setImgUrl(null)
+      setProduct({
+        title: null,
+        artist:null,
+        price: null,
+        genre: null,
+        release_date: null,
+        state: null,
+        type: null,
+        featured: false
+      });
+      // setMenu('remover');
     } catch (error) {
       console.log(error)
       toast.error('ocorreu um erro ao adicionar produto')
@@ -286,7 +358,7 @@ function handleChangePage(data){
               </Input>              
               <Input>
                 <p>
-                  Estado
+                  Estado do Produto
                 </p>
                 <input
                   onChange={(e) => setProduct({...product, state: e.target.value})}
@@ -351,26 +423,25 @@ function handleChangePage(data){
                     </ProductField>                
                 </ProductCard>                
               ))}
-              {size > 1 &&
-                <Pagination
-                  size={size}
-                  handleChangePage={handleChangePage}
-                />
-              }
-              {openModal && <AdminModal
-                openModal={openModal}
-                setOpenModal={setOpenModal}
-                activeProduct={activeProduct}
-              />
-              }
+
           </ProductList>
-        </>
-        
+          {(size > 1 && !openModal) &&
+            <Pagination
+              size={size}
+              handleChangePage={handleChangePage}
+            />
+          }
+        </>        
         }
         </Content>
         </>
         }
-
+        {openModal && <AdminModal
+          openModal={openModal}
+          setOpenModal={setOpenModal}
+          activeProduct={activeProduct}
+        />
+        }
       </Wraper>
   )
 }

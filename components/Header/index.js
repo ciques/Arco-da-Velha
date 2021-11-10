@@ -21,6 +21,8 @@ const options = [
 function Header(props) {
 
     const [logged, setLogged] = useState(false);
+    const [fetched, setFetched] = useState(false);
+    const [admin, setAdmin] = useState(false);
 
     var userName
 
@@ -43,18 +45,15 @@ function Header(props) {
             };
 
             const response = await api.post("refresh", {}, config)
-            console.log(response);
+
+            // refresh responde dizendo se o usuario é admin caso o token seja válido
+            setAdmin(response.data[1]);
             if (response.status == 200) {
                 props.setLogged(true)
                 setLogged(true);
             }
             console.log(response)
 
-            if (response.error == "Token inválido") {
-                setLoading(false)
-                props.setLogged(false)
-                setLogged(false);
-            }
 
         } catch (error) {
             console.log(error)
@@ -62,17 +61,20 @@ function Header(props) {
             setLogged(false);
             return
         }
+
+        setFetched(true)
     }
 
     function logout(){
         localStorage.removeItem('userToken')
         localStorage.removeItem('userName')
+        localStorage.removeItem('admin')
         checkLogin()
     }
 
     useEffect(() => {
-        checkLogin();
-    });
+        !fetched && checkLogin();
+    }, [fetched]);
 
     return (
         <Wraper>
@@ -83,7 +85,9 @@ function Header(props) {
                     {logged ? 
                     <>
                         <p>Bem Vindo {userName}</p>
+                        {admin && <p style={{cursor: 'pointer', color: '#552b4d', marginTop: '10px'}} onClick={() => document.location.href = '/panel/admin'} >Entrar no Painel de Administração</p>}
                         <p style={{cursor: 'pointer', color: '#552b4d', marginTop: '10px'}} onClick={() => logout() }>Sair</p>
+
                     </>
                     : 
                         <p>Faça<a href='/panel/login'> Login</a> ou  <a href='/panel/cadastro'> Registre-se</a></p>

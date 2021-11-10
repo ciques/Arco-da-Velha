@@ -12,6 +12,7 @@ export default function Registro() {
 
   const [fetched, setFetched] = useState(false);
   const [password, setPassword ] = useState('');
+  const [repeatPassword, setRepeatPassword ] = useState('');
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(true);  
@@ -19,6 +20,10 @@ export default function Registro() {
 
 
     async function login() {
+      if(password != repeatPassword) {
+        toast.error('as senhas não conferem, tente novamente')
+        return
+      }
       try {
         const response = await api.post("userRegister", { email, password, name, token })
 
@@ -66,9 +71,7 @@ export default function Registro() {
   return (
     <Wraper>
       {loading && <Loading isLoading={loading} />}
-      <a href='/'>
-        voltar ao site
-      </a>  
+      
       <Title>
         Bem vindo ao painel de administração
       </Title>
@@ -100,14 +103,31 @@ export default function Registro() {
             onKeyPress={(e) => checkEnter(e)}
           />
         </Input>
+        <Input>
+          <p>
+            Confirme sua senha
+          </p>
+          <input type='password' 
+            onChange={(e) => setRepeatPassword(e.target.value)}
+            onKeyPress={(e) => checkEnter(e)}
+          />
+        </Input>
         <ReCAPTCHA
           style={{ width: 'fit-content', margin:'20px auto'}}
           sitekey="6LcLWfccAAAAAMOiT5exisBfebFD5clOoQqxdD3Z"
           onChange={onChange}
-        />,
-        <LoginButton onClick={() => login()}>
-          Registrar
-        </LoginButton>
+        />
+        <div style={{display: 'flex'}}>
+          <LoginButton onClick={() => login()}>
+            Registrar
+          </LoginButton>
+          <LoginButton onClick={() => document.location.href = '/'} style={{backgroundColor: '#552b4d'}}>
+            <a style={{color: '#fff', textDecoration: 'none'}} href='/'>
+              voltar ao site
+            </a> 
+          </LoginButton>
+        </div>
+
         <ToastContainer position='bottom-center' />
       </LoginBox>
       

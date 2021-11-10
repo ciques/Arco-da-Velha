@@ -6,6 +6,8 @@ function fetchData() {
 
 function logOut(){
     localStorage.removeItem('userToken')
+    localStorage.removeItem('userName')
+    localStorage.removeItem('admin')
     document.location.href = "/panel/login";
   }
 

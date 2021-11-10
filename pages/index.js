@@ -67,7 +67,7 @@ export default function Home() {
           <Header setLogged={setLogged} logo="./images/logo.jpg"/>
           <Content>            
             <Featured>
-              Do Arco Da Velha para você
+              Destaques do Arco Da Velha para você
             </Featured>
             <ProductList>
               {productList.length ?
