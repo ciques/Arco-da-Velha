@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 
 export const Wraper = styled.div`
-  margin: 20px auto;
   justify-content: center;
-  padding: 10px;
   color: #808080;  
 `
 

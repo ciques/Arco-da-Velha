@@ -126,7 +126,7 @@ export default function Product() {
             </ProductInfo> 
           </ProductArea>
           <Questions>
-            <p>PERGUNTAS SOBRE ESSE DISCO</p>
+            <p>PERGUNTE OU COMENTE ALGO SOBRE O PRODUTO</p>
             <QuestionInput value={question} onChange={(e) => setQuestion(e.target.value)}/><button onClick={() => sendQuestion()}>Perguntar</button>
             <Published>
               <p>Perguntas e Comentarios</p>
