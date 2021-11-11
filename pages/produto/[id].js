@@ -116,7 +116,8 @@ export default function Product() {
             <ProductInfo>
               <h1>{product.title}</h1>
               <h2> {product.price ? 'R$ ' + formatPrice(product.price.toFixed(2)) : 'Sem preço definido' }</h2>
-              Data de Lançamento: {showData()}
+              Ano de Lançamento: {product.release_date}
+              <p>Estado do produto: {product.state}</p>
               <ProductButton>
                 <ButtonText href={'https://wa.me/5551991980229?&text=Ola%20Jorge%20quero%20saber%20mais%20sobre%20o%20anuncio%20de%20'+formatToZap(product.title)}>
                   FALE OU NEGOCIE COM O VENDEDOR

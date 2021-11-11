@@ -80,7 +80,7 @@ function Header(props) {
         <Wraper>
             <Main>
                 <Logo src={props.logo} />
-                <SearchBox placeholder={'Procurar produto'} handleSearch={(text) => fetchData(text)} />
+                <SearchBox placeholder={'Procurar produtos, artistas e muito mais'} handleSearch={(text) => fetchData(text)} />
                 <Utility>
                     {logged ? 
                     <>
@@ -115,13 +115,18 @@ function Header(props) {
                                     <a href="/produtos/dvd">DVD</a>   
                                     <a href="/produtos/compactos">Vinil Compactos</a>                                 
                                 </div>
+                                <div>
+                                    <a href="/produtos/Vinil">Vinil</a>
+                                    <a href="/produtos/Disco">Disco</a>   
+                                    <a href="/produtos/LP">LP</a>                                 
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div className="dropdown">
                         <button className="dropbtn">Discos/LPs <IoIosArrowDown size={'15px'} /></button>
-                        <div className="dropdown-content">
+                        <div className="discos dropdown-content">
                             <div style={{display: 'flex'}}>
                                 <div>
                                     <a href="/produtos/Pop Rock">Pop Rock</a>

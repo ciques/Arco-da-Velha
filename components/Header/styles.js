@@ -19,13 +19,14 @@ export const Main = styled.div`
 `;
 
 export const Utility = styled.div`
-  color: #808080;
+  color: #FFF;
 
   & > p {
     margin: 0;
 
     & > a {
       text-decoration: none;
+      color: #09b7b3;
     }
   }
 `;
@@ -42,9 +43,10 @@ export const SubHeader = styled.div`
 `;
 
 export const Wraper = styled.div`
-  color: #808080;
+  color: #FFF;
   height: 100%;
   width: 100%;
+  background: #552b4d;
 `;
 
 export const Logo = styled.img`
