@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Main = styled.div`
   color: #808080;
-  height: 80px;
+  min-height: 80px;
   display: flex;
   width: 100%;
   margin-left: auto;
@@ -12,6 +12,8 @@ export const Main = styled.div`
   max-width: 900px;
   justify-content: space-between;
   font-size: 20px;
+  padding: 20px 20px 0;
+  box-sizing: border-box;
 
   @media (max-width: 480px) {
     font-size: 15px;
@@ -23,11 +25,11 @@ export const Utility = styled.div`
 
   & > p {
     margin: 0;
-    color: #09b7b3
+    color: white;
 
     & > a {
       text-decoration: none;
-      color: #09b7b3;
+      color: black;
     }
   }
 `;

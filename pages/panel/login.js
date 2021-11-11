@@ -105,9 +105,6 @@ export default function Home() {
   return (
     <Wraper>
       {loading && <Loading isLoading={loading} />}
-      <a href='/'>
-        voltar ao site
-      </a>  
       <Title>
         Bem vindo ao painel de administração
       </Title>
@@ -131,10 +128,10 @@ export default function Home() {
           />
         </Input>
         <div style={{display: 'flex'}}>
-          <LoginButton onClick={() => login()}>
+          <LoginButton onClick={() => login()} style={{backgroundColor: '#552b4d'}}>
             Login
           </LoginButton>
-          <LoginButton onClick={() => document.location.href = '/'} style={{backgroundColor: '#552b4d'}}>
+          <LoginButton onClick={() => document.location.href = '/'}>
             <a style={{color: '#fff', textDecoration: 'none'}} href='/'>
               voltar ao site
             </a> 
