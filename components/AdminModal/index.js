@@ -16,6 +16,8 @@ const customStyles = {
     marginRight: '-50%',
     transform: 'translate(-50%, -50%)',
     maxWidth: '100%',
+    overflowY: 'auto',
+    maxHeight: '100vh',
   },
 };
 
@@ -142,7 +144,7 @@ export default function AdminModal({openModal, setOpenModal, activeProduct}) {
   }, [selectedImage]);
 
   return (
-    <div>
+    <div style={{overflow: 'auto'}}>
       {console.log('producto es: ', activeProduct)}
       {console.log('etbm: ', product)}
       <Modal
