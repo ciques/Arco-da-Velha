@@ -9,10 +9,10 @@ export const Main = styled.div`
   margin-right: auto;
   padding-top: 20px;
   padding-bottom: 20px;
-  max-width: 900px;
+  max-width: 1000px;
   justify-content: space-between;
   font-size: 20px;
-  padding: 20px 20px 0;
+  padding: 20px 0 0;
   box-sizing: border-box;
 
   @media (max-width: 480px) {
