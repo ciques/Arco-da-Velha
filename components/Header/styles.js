@@ -23,6 +23,7 @@ export const Utility = styled.div`
 
   & > p {
     margin: 0;
+    color: #09b7b3
 
     & > a {
       text-decoration: none;
@@ -32,7 +33,7 @@ export const Utility = styled.div`
 `;
 
 export const SubHeader = styled.div`
-  background-color: #552b4d;
+  background-color: black;
   color: white;
   height: 100%;
   display: flex;
@@ -46,7 +47,7 @@ export const Wraper = styled.div`
   color: #FFF;
   height: 100%;
   width: 100%;
-  background: #552b4d;
+  background: #7c4a73;
 `;
 
 export const Logo = styled.img`
@@ -73,7 +74,7 @@ export const HeaderItens = styled.a`
   padding: 16px;
 
   &:hover {
-    background-color: #7c4a73
+    background-color: #552b4d
   }
 
   @media (max-width: 700px) {
