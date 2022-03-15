@@ -34,7 +34,7 @@ const generos = [
   'MPB',
   'Bossa Nova',
   'Música Latina',
-  'Música Gaucha/Tradicionalista',
+  'Música Tradicionalista Gaúcha',
   'Música Sertaneja',
   'Jovem Guarda',
   'Velha Guarda',
