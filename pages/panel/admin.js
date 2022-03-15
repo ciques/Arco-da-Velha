@@ -10,8 +10,48 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 import api from '../../services/api';
 import SearchBox from '../../components/SearchBox';
-import { Wraper, MenuBox, MenuButton, Input, ProductCard, ProductField, ProductList, SelectType, OptionType } from '../../styles/admin';
+import { Wraper, MenuBox, MenuButton, Input, Select, ProductCard, ProductField, ProductList, SelectType, OptionType } from '../../styles/admin';
 
+
+const produtos = [
+  'Vinil',
+  'CD',
+  'DVD',
+  'Fita K7',
+  'Fita VHS',
+  'Livro',
+  'Aparelho de Som',
+]
+
+const generos = [
+  'Rock Internacional',
+  'Rock Nacional',
+  'Rock Gaúcho' ,
+  'Pop Rock',
+  'Jazz/instrumental',
+  'Blues',
+  'Soul/Funk/Disco/Dance/Rap/Hip Hop',
+  'MPB',
+  'Bossa Nova',
+  'Música Latina',
+  'Música Gaucha/Tradicionalista',
+  'Música Sertaneja',
+  'Jovem Guarda',
+  'Velha Guarda',
+  'Orquestras/ Erudita',
+  'Italiana',
+  'Francesa',
+  'Samba/Pagode',
+  'Importados',
+  'Infantil',
+  'Gospel',
+  'Forró',
+  'Anos 60/70',
+  'Reggae',
+  'Hits/Coletâneas',
+  'Trilhas/Novela',
+  'Trilhas/Filme',
+]
 
 export default function Admin() {
   
@@ -41,7 +81,7 @@ export default function Admin() {
       genre: null,
       release_date: null,
       state: null,
-      type: null,
+      type: produtos[0],
       featured: false
     });
   const [activeProduct, setActiveProduct] = useState({});
@@ -341,20 +381,31 @@ function handleChangePage(data){
                 <p>
                   Gênero Musical
                 </p>
-                <input
+                <Select onChange={(e) => setProduct({...product, genre: e.target.value})}>
+                  <option value="" disabled selected>Escolha o Gênero</option>
+                  {generos && generos.map((genero,index)=>
+                    <option key={index} value={genero}>{genero}</option>
+                  )}
+                </Select>
+                {/* <input
                   onChange={(e) => setProduct({...product, genre: e.target.value})}
                   onKeyPress={(e) => checkEnter(e)}
-                />
+                /> */}
                 {console.log(product)}
               </Input>
               <Input>
                 <p>
                   Tipo
                 </p>
-                <input 
+                <Select onChange={(e) => setProduct({...product, type: e.target.value})}>
+                  {produtos && produtos.map((produto,index)=>
+                    <option key={index} value={produto}>{produto}</option>
+                  )}
+                </Select>
+                {/* <input 
                   onChange={(e) => setProduct({...product, type: e.target.value})}
                   onKeyPress={(e) => checkEnter(e)}
-                />
+                /> */}
               </Input>              
               <Input>
                 <p>
@@ -413,7 +464,7 @@ function handleChangePage(data){
           <ProductList>
             {productList &&
               productList.map(product => (
-                <ProductCard key={product.id} onClick={() => prepareModal(product)} key={product.id}>
+                <ProductCard key={product.id} onClick={() => prepareModal(product)}>
                     <img src={product.image_url} />
                     <ProductField>
                       {product.title}

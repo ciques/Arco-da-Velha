@@ -53,7 +53,7 @@ export default function Products() {
 
 
   async function Form() {
-    setLoading(true)
+    // setLoading(true)
     setFilter(router.query.filter ? router.query.filter[0] : null)
 
     const filterPost = router.query.filter ? router.query.filter[0] : null
@@ -97,9 +97,8 @@ export default function Products() {
   }
 
   function handleChangePage(data){
-    setLoading(true);
-    setPage(data.selected + 1);
     setFetched(false);
+    setPage(data.selected + 1);
   }
 
   useEffect(() => {    
@@ -131,7 +130,7 @@ export default function Products() {
              
               {genres && 
                 <CategoryTitle>
-                  Generos Musicais
+                  Categorias
                 </CategoryTitle>
               }
               {genres &&

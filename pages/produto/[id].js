@@ -119,7 +119,7 @@ export default function Product() {
               Ano de Lançamento: {product.release_date}
               <p>Estado do produto: {product.state}</p>
               <ProductButton>
-                <ButtonText href={'https://wa.me/5551991980229?&text=Ola%20Jorge%20quero%20saber%20mais%20sobre%20o%20anuncio%20de%20'+formatToZap(product.title)}>
+                <ButtonText target="_blank" href={'https://wa.me/5551991980229?&text=Ola%20Jorge%20quero%20saber%20mais%20sobre%20o%20anuncio%20de%20'+formatToZap(product.title)}>
                   FALE OU NEGOCIE COM O VENDEDOR
                 </ButtonText>
               </ProductButton>

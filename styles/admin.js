@@ -72,6 +72,25 @@ export const Input = styled.div`
   }
 `
 
+export const Select = styled.select`
+  margin-bottom: 10px;
+  font-size: 20px;
+  border-radius: 5px;
+  border: solid 1px #808080;
+  max-width: 95%;
+  box-sizing: border-box;
+  width: 95%;
+
+  @media (max-width: 900px) {
+    font-size: 15px;
+    margin-bottom: 0;
+  }
+
+  & > option{
+    font-size: 20px;
+  }
+`
+
 export const ProductField = styled.div`
   display: flex;
   word-break: break-all;

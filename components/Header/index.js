@@ -85,8 +85,8 @@ function Header(props) {
                     {logged ? 
                     <>
                         <p>Bem Vindo {userName}</p>
-                        {admin && <p style={{cursor: 'pointer', marginTop: '10px'}} onClick={() => document.location.href = '/panel/admin'} >Entrar no Painel de Administração</p>}
-                        <p style={{cursor: 'pointer', marginTop: '10px'}} onClick={() => logout() }>Sair</p>
+                        {admin && <p style={{cursor: 'pointer', marginTop: '10px', color: '#e39a09'}} onClick={() => document.location.href = '/panel/admin'} >Entrar no Painel de Administração</p>}
+                        <p style={{cursor: 'pointer', marginTop: '10px', color: '#e39a09'}} onClick={() => logout() }>Sair</p>
 
                     </>
                     : 
