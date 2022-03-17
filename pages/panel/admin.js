@@ -295,7 +295,7 @@ function handleChangePage(data){
         genre: null,
         release_date: null,
         state: null,
-        type: null,
+        type: produtos[0],
         featured: false
       });
       // setMenu('remover');
@@ -341,7 +341,7 @@ function handleChangePage(data){
                   Descrição do Produto
                 </p>
                 <input
-                  onChange={(e) => setProduct({...product, title: e.target.value})}
+                  onChange={(e) => setProduct({...product, title: e.target.value.trim()})}
                   onKeyPress={(e) => checkEnter(e)}
                 />
                 {console.log(product)}
@@ -351,7 +351,7 @@ function handleChangePage(data){
                   Artista/Empresa
                 </p>
                 <input
-                  onChange={(e) => setProduct({...product, artist: e.target.value})}
+                  onChange={(e) => setProduct({...product, artist: e.target.value.trim()})}
                   onKeyPress={(e) => checkEnter(e)}
                 />
               </Input>
