@@ -106,19 +106,18 @@ function Header(props) {
                             <a href="/produtos">Todos</a>
                             <div style={{display: 'flex'}}> 
                                 <div> 
-                                    <a href="/produtos/CD">CD</a>
-                                    <a href="/produtos/K7">K7</a>
-                                    <a href="/produtos/toca disco">Toca Discos</a>
+                                    <a style={{height: '33%'}} href="/produtos/CD">CD</a>
+                                    <a style={{height: '33%'}} href="/produtos/K7">K7</a>
+                                    <a style={{height: '33%'}} href="/produtos/Vinil">Vinil</a>                                    
                                 </div>
                                 <div>
-                                    <a href="/produtos/vhs">VHS</a>
-                                    <a href="/produtos/dvd">DVD</a>   
-                                    <a href="/produtos/compactos">Vinil Compactos</a>                                 
+                                    <a style={{height: '33%'}} href="/produtos/vhs">VHS</a>
+                                    <a style={{height: '33%'}} href="/produtos/dvd">DVD</a>   
+                                    <a style={{height: '33%'}} href="/produtos/Livros">Livros</a>                                
                                 </div>
-                                <div>
-                                    <a href="/produtos/Vinil">Vinil</a>
-                                    <a href="/produtos/Disco">Disco</a>   
-                                    <a href="/produtos/LP">LP</a>                                 
+                                <div>                                    
+                                    <a style={{height: '50%'}} href="/produtos/compactos">Vinil Compactos</a>
+                                    <a style={{height: '50%'}} href="/produtos/toca disco">Toca Discos</a>  
                                 </div>
                             </div>
                         </div>
@@ -130,7 +129,7 @@ function Header(props) {
                             <div style={{display: 'flex'}}>
                                 <div>
                                     <a href="/produtos/Pop Rock">Pop Rock</a>
-                                    <a href="/produtos/Anos 80">Anos 80</a>
+                                    <a href="/produtos/Rock Internacional">Rock Internacional</a>
                                     <a href="/produtos/samba">Samba</a>
                                     <a href="/produtos/Novelas">Novelas</a>
                                 </div>

@@ -93,7 +93,7 @@ export const Select = styled.select`
 
 export const ProductField = styled.div`
   display: flex;
-  word-break: break-all;
+  word-break: break-word;
 
   & > p {
     margin: 0 0 10px;
